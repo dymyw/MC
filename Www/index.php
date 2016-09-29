@@ -9,4 +9,4 @@
 
 include_once 'init.inc.php';
 
-echo 'Core\ServiceLocator\ServiceLocator - Service';
+echo 'Core\Db\Pdo';
