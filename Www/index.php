@@ -9,4 +9,4 @@
 
 include_once 'init.inc.php';
 
-echo 'Core\Db\Pdo';
+echo 'Core\ServiceLocator\ServiceLocator - Callback function';

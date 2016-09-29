@@ -10,6 +10,9 @@
 
 namespace Core\ServiceLocator;
 
+/**
+ * @property \Core\Db\Pdo $db The DB instance
+ */
 class ServiceLocator implements ServiceLocatorInterface
 {
     /**
@@ -181,9 +184,28 @@ class ServiceLocator implements ServiceLocatorInterface
             return $this->services[$canonicalName];
         }
 
-        /**
-         * @todo search from invokables
-         */
+        // search from invokables
+        if (isset($this->invokables[$canonicalName])) {
+            $invokable = $this->invokables[$canonicalName];
+
+            /**
+             * @todo It's an invokable class
+             */
+            if (is_string($invokable) && class_exists($invokable)) {
+
+            }
+            /**
+             * It's a callback function
+             *
+             * @example
+             *  'db' => ['App\ServiceLocator\Invokable', 'getDbInstance'],
+             */
+            elseif (is_callable($invokable)) {
+                $instance = $invokable($this);
+                $this->invokables[$canonicalName] = $instance;
+                return $instance;
+            }
+        }
 
         // directly invoke if exists
         if (class_exists($name)) {

@@ -10,6 +10,8 @@ return [
     ],
 
     'invokables' => [
+        // callback function
+        'db' => ['App\ServiceLocator\Invokable', 'getDbInstance'],
     ],
 
     'aliases' => [
