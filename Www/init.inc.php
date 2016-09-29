@@ -8,6 +8,7 @@
  */
 
 use Core\Loader\AutoLoader;
+use Core\ServiceLocator\ServiceLocator;
 
 /**
  * Filesystem constants
@@ -15,7 +16,10 @@ use Core\Loader\AutoLoader;
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_DIR',  dirname(__DIR__) . DS);
 define('CORE_DIR',  ROOT_DIR . 'Core' . DS);
-define('APP_DIR',   ROOT_DIR . 'App' . DS);
+
+define('APP_DIR',       ROOT_DIR . 'App' . DS);
+define('CONFIG_DIR',    APP_DIR . 'Config' . DS);
+
 define('WWW_DIR',   ROOT_DIR . 'Www' . DS);
 
 /**
@@ -27,5 +31,8 @@ AutoLoader::setNamespaces([
     'App' => APP_DIR . 'Class' . DS,
 ]);
 AutoLoader::register();
+
+/* @var $locator ServiceLocator */
+$GLOBALS['locator'] = new ServiceLocator(include CONFIG_DIR . 'Service.php');
 
 define('MC_VERSION', '2.0');

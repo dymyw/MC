@@ -9,4 +9,4 @@
 
 include_once 'init.inc.php';
 
-echo 'Core\Loader\AutoLoader';
+echo 'Core\ServiceLocator\ServiceLocator - Service';
