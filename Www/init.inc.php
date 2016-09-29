@@ -23,6 +23,13 @@ define('CONFIG_DIR',    APP_DIR . 'Config' . DS);
 define('WWW_DIR',   ROOT_DIR . 'Www' . DS);
 
 /**
+ * Load the private configure
+ */
+if (file_exists(CONFIG_DIR . 'Config.private.php')) {
+    include CONFIG_DIR . 'Config.private.php';
+}
+
+/**
  * Register autoload
  */
 include_once CORE_DIR . 'Loader' . DS . 'AutoLoader.php';
@@ -31,6 +38,15 @@ AutoLoader::setNamespaces([
     'App' => APP_DIR . 'Class' . DS,
 ]);
 AutoLoader::register();
+
+/**
+ * Database information
+ */
+!defined('DB_HOST') && define('DB_HOST', 'localhost');
+!defined('DB_PORT') && define('DB_PORT', 3306);
+!defined('DB_USERNAME') && define('DB_USERNAME', 'root');
+!defined('DB_PASSWORD') && define('DB_PASSWORD', '');
+!defined('DB_DATABASE') && define('DB_DATABASE', 'test');
 
 /* @var $locator ServiceLocator */
 $GLOBALS['locator'] = new ServiceLocator(include CONFIG_DIR . 'Service.php');

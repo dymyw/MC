@@ -19,6 +19,8 @@ var_dump($locator->has('name'));
 var_dump($locator->get('name'));
 // \Core\ServiceLocator\ServiceLocator::__get()
 var_dump($locator->info);
+// callback function
+var_dump($locator->db->getRow("SELECT id, product_name, product_desc FROM t_product LIMIT 1"));
 
 // \Core\ServiceLocator\ServiceLocator::setAlias()
 var_dump($locator->setAlias('info', 'i')->i);
