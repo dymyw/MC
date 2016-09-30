@@ -5,10 +5,12 @@
  * @package Core_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-09-29
+ * @version 2016-09-30
  */
 
 namespace Core\ServiceLocator;
+
+use Core\Utils\Reflection;
 
 /**
  * @property \Core\Db\Pdo $db The DB instance
@@ -188,11 +190,17 @@ class ServiceLocator implements ServiceLocatorInterface
         if (isset($this->invokables[$canonicalName])) {
             $invokable = $this->invokables[$canonicalName];
 
-            /**
-             * @todo It's an invokable class
-             */
+            // It's an invokable class
             if (is_string($invokable) && class_exists($invokable)) {
+                $params = $this->getInvokableParams($canonicalName);
+                $instance = $params ? Reflection::newInstance($invokable, $params) : new $invokable;
 
+                if ($instance instanceof ServiceLocatorAwareInterface) {
+                    $instance->setServiceLocator($this);
+                }
+
+                $this->services[$canonicalName] = $instance;
+                return $instance;
             }
             /**
              * It's a callback function
@@ -217,6 +225,18 @@ class ServiceLocator implements ServiceLocatorInterface
         throw new \InvalidArgumentException(sprintf(
             'Attempt to get an invalid service: %s', $name
         ));
+    }
+
+    /**
+     * Get the params of invokable class
+     *
+     * @param string $name
+     * @return array
+     */
+    public function getInvokableParams($name)
+    {
+        $canonicalName = $this->getCanonicalName($name);
+        return isset($this->parameters[$canonicalName]) ? $this->parameters[$canonicalName] : [];
     }
 
     /**
