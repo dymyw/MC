@@ -12,6 +12,9 @@ return [
     'invokables' => [
         // callback function
         'db' => ['App\ServiceLocator\Invokable', 'getDbInstance'],
+
+        // invokable class
+        'front' => 'App\Controller\Front',
     ],
 
     'aliases' => [

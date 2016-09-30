@@ -21,6 +21,9 @@ var_dump($locator->get('name'));
 var_dump($locator->info);
 // callback function
 var_dump($locator->db->getRow("SELECT id, product_name, product_desc FROM t_product LIMIT 1"));
+// invokable class
+var_dump($locator->front->getInfo());
+var_dump($locator->front->getServiceLocator());
 
 // \Core\ServiceLocator\ServiceLocator::setAlias()
 var_dump($locator->setAlias('info', 'i')->i);
