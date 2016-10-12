@@ -4,7 +4,7 @@
  *
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-11
- * @version 2016-09-29
+ * @version 2016-10-12
  */
 
 use Core\Loader\AutoLoader;
@@ -21,6 +21,11 @@ define('APP_DIR',       ROOT_DIR . 'App' . DS);
 define('CONFIG_DIR',    APP_DIR . 'Config' . DS);
 
 define('WWW_DIR',   ROOT_DIR . 'Www' . DS);
+
+/**
+ * The base path of URLs
+ */
+!defined('BASE_PATH') && define('BASE_PATH', '/');
 
 /**
  * Load the private configure
