@@ -4,7 +4,7 @@
  *
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-11
- * @version 2016-10-12
+ * @version 2016-10-17
  */
 
 include_once 'init.inc.php';
@@ -14,6 +14,32 @@ $params = $locator->get('params');
 $controller = &$params['_controller'];
 $action = &$params['_action'];
 var_dump($params, $controller, $action);
+
+// /eyeglasses/index
+var_dump($locator->router->createUrl('eyeglasses/index'));
+
+// /women-eyeglasses-page-12.html
+var_dump($locator->router->createUrl('eyeglasses/gender', [
+    'gender' => 'women',
+    'page' => 12,
+]));
+
+// /fashion-women-eyeglasses-width-140.html
+var_dump($locator->router->createUrl('eyeglasses/list', [
+    'attrs' => 'fashion',
+    'gender' => 'women',
+    'width' => 140,
+]));
+
+// /fashion-red-women-top10-bestseller-eyeglasses-width-140-height-22-12.html
+var_dump($locator->router->createUrl('eyeglasses/list', [
+    'attrs' => ['fashion', 'red'],
+    'gender' => 'women',
+    'tags' => ['top10', 'bestseller'],
+    'width' => 140,
+    'height' => 22,
+    'page' => 12,
+]));
 
 /**
  *

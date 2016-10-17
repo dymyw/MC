@@ -313,7 +313,7 @@ class RuleParser implements RuleParserInterface
                 if ($param == $this->pairsIdentifier) {
                     $regExpTemp = '(?:' . $matches[4] . ')[\\' . $this->uriDelimiter . '](?:[^\\' . $this->uriDelimiter . ']+)';
                     $paramsRegExp[$param]['regExpKey'] = '#^' . $matches[4] . '$#i';
-                    $paramsRegExp[$param]['regExpPairs'] = '#^' . $regExpTemp . '$#i';
+                    $paramsRegExp[$param]['regExpPairs'] = '#' . $regExpTemp . '#i';
                 } else {
                     $regExpTemp = $matches[4];
                 }

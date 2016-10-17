@@ -5,7 +5,7 @@
  * @package Core_Router
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-17
- * @version 2016-10-12
+ * @version 2016-10-17
  */
 
 namespace Core\Router;
@@ -266,14 +266,180 @@ class Router implements RouterInterface
     }
 
     /**
+     * Get the parent parse path
+     *
+     * @param string $path
+     * @return string|bool
+     */
+    public function getParentPath($path)
+    {
+        if (empty($path)) {
+            return '*';
+        }
+        elseif ('*' === $path) {
+            return false;
+        }
+        elseif ('*' === $path{0}) {
+            return '*';
+        }
+
+        $segments = explode('/', $path);
+        foreach ($segments as $i => $segment) {
+            if ('*' === $segment) {
+                $i--;
+                break;
+            }
+        }
+        $segments[$i] = '*';
+        return implode('/', $segments);
+    }
+
+    /**
      * Create URL
      *
      * @param string $path
      * @param array $params
      * @return string
      */
-    public function createUrl($path, array $params)
+    public function createUrl($path, array $params = [])
     {
+        // get the creation rules
+        $parsedRules = $this->getRuleParser()->getParsedRules();
+        $pairsIdentifier = $this->getRuleParser()->getPairsIdentifier();
+        $uriDelimiter = $this->getRuleParser()->getUriDelimiter();
+        $pathParams = $this->parsePath($path);
 
+        // filter $params
+        foreach ($params as $param => $value) {
+            if (null === $value || [] === $value) {
+                unset($params[$param]);
+            }
+        }
+
+        // search path
+        do {
+            if (!isset($parsedRules[$path])) {
+                continue;
+            }
+
+            // exists the path
+            $rules = $parsedRules[$path];
+
+            foreach ($rules as $options) {
+                // it doesn't exist some required parameter (except pairs and path identifiers)
+                foreach ($options['requiredParams'] as $name) {
+                    if (
+                        !array_key_exists($name, $params)
+                        && $name != $pairsIdentifier
+                        && !in_array($name, $this->getPathIdentifiers())
+
+                    ) { continue 2; }
+                }
+
+                // pair array & query array
+                $pairArray = [];
+                $queryArray = [];
+                $keyRegExp = isset($options['paramsRegExp'][$pairsIdentifier]['regExpKey']) ? $options['paramsRegExp'][$pairsIdentifier]['regExpKey'] : null;
+                foreach ($params as $name => $value) {
+                    if (!in_array($name, $options['allParams'])) {
+                        if ($keyRegExp && preg_match($keyRegExp, $name)) {
+                            $pairArray[$name] = $value;
+                        } else {
+                            $queryArray[$name] = $value;
+                        }
+                    }
+                }
+
+                if ($keyRegExp) {
+                    // add $pairArray to $params
+                    if ($pairArray) {
+                        $params[$pairsIdentifier] = $pairArray;
+                    }
+                    // the pairs identifier is required, but it does not exist
+                    else {
+                        continue;
+                    }
+                }
+
+                // get query string
+                $queryString = http_build_query($queryArray);
+
+                // found
+                $tr = [];
+                $params = array_merge($params, $pathParams);
+                foreach ($options['allParams'] as $name) {
+                    $search = '<' . $name . '>';
+                    $replace = '';
+
+                    if (isset($params[$name])) {
+                        // array params
+                        if (is_array($params[$name])) {
+                            $arrayParams = [];
+
+                            if (!$options['paramsRegExp'][$name]['isArray']) {
+                                throw new \RuntimeException("Index {$name} should not be the array parameter.");
+                            }
+
+                            foreach ($params[$name] as $k => $v) {
+                                if (is_array($v)) {
+                                    $str = var_export($v, true);
+                                    throw new \RuntimeException("Invalid creating URL parameter name: {$k}, parameters are {$str}");
+                                }
+
+                                $regExp = $options['paramsRegExp'][$name]['regExp'];
+
+                                // is query identifier
+                                if ($name == $pairsIdentifier) {
+                                    $v = $k . $uriDelimiter . $v;
+                                    $regExp = $options['paramsRegExp'][$name]['regExpPairs'];
+                                }
+
+                                preg_match_all($regExp, $v, $matches);
+                                if ($matches[0]) {
+                                    $arrayParams[] = rawurlencode($v);
+                                } else {
+                                    throw new \RuntimeException("Index {$name}: {$v} not match regExp: {$regExp}");
+                                }
+                            }
+
+                            $replace = implode($uriDelimiter, $arrayParams);
+                        }
+                        // string parameters
+                        else {
+                            preg_match_all($options['paramsRegExp'][$name]['regExp'], $params[$name], $matches);
+                            if ($matches[0]) {
+                                $replace = rawurlencode((string) $params[$name]);
+                            } else {
+                                throw new \RuntimeException("Index {$name}: {$params[$name]} not match regExp: " . $options['paramsRegExp'][$name]['regExp']);
+                            }
+                        }
+
+                        $replace = $options['paramsRegExp'][$name]['before'] . $replace . $options['paramsRegExp'][$name]['after'];
+                    }
+
+                    $tr[$search] = $replace;
+                }
+
+                // create url
+                $url = strtr($options['template'], $tr);
+
+                // return
+                switch ($this->getRouteMode()) {
+                    case self::ROUTE_MODE_URLREWRITE:
+                        return $this->basePath . $url . ($queryString ? '?' . $queryString : '');
+                        break;
+
+                    case self::ROUTE_MODE_PATHINFO:
+                        return $this->basePath . 'index.php/' . $url . ($queryString ? '?' . $queryString : '');
+                        break;
+
+                    default:
+                        throw new \RuntimeException("Invalid route mode: " . $this->getRouteMode());
+                }
+            }
+        } while ($path = $this->getParentPath($path));
+
+        // throw exception
+        throw new \InvalidArgumentException("Invalid path: {$path}");
     }
 }

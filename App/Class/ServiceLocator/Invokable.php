@@ -5,7 +5,7 @@
  * @package App_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-10-12
+ * @version 2016-10-17
  */
 
 namespace App\ServiceLocator;
@@ -46,11 +46,19 @@ final class Invokable
         return $db;
     }
 
+    /**
+     * Get all the query parameters
+     *
+     * @param ServiceLocator $locator
+     * @return array
+     */
     public static function getParams(ServiceLocator $locator)
     {
+        /* @var $ruleParser RuleParser */
         $ruleParser = new RuleParser;
         $ruleParser->setRules(include CONFIG_DIR . 'Router.php')->getParsedRules();
 
+        /* @var $router Router */
         $router = new Router($ruleParser);
         $router->setBasePath(BASE_PATH);
 //        $router->setRouteMode(Router::ROUTE_MODE_PATHINFO);
