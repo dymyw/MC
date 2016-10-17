@@ -5,7 +5,7 @@
  * @package Core_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-09-30
+ * @version 2016-10-12
  */
 
 namespace Core\ServiceLocator;
@@ -14,6 +14,7 @@ use Core\Utils\Reflection;
 
 /**
  * @property \Core\Db\Pdo $db The DB instance
+ * @property \Core\Router\Router $router The Router instance
  */
 class ServiceLocator implements ServiceLocatorInterface
 {

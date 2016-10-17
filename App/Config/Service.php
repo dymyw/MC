@@ -11,7 +11,8 @@ return [
 
     'invokables' => [
         // callback function
-        'db' => ['App\ServiceLocator\Invokable', 'getDbInstance'],
+        'db'        => ['App\ServiceLocator\Invokable', 'getDbInstance'],
+        'params'    => ['App\ServiceLocator\Invokable', 'getParams'],
     ],
 
     'aliases' => [

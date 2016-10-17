@@ -5,12 +5,15 @@
  * @package App_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-09-29
+ * @version 2016-10-17
  */
 
 namespace App\ServiceLocator;
 
 use Core\Db\Pdo;
+use Core\ServiceLocator\ServiceLocator;
+use Core\Router\RuleParser;
+use Core\Router\Router;
 
 /**
  * Put all the invokable functions together for locator
@@ -41,5 +44,32 @@ final class Invokable
         $db->query("SET time_zone = '+08:00'");
 
         return $db;
+    }
+
+    /**
+     * Get all the query parameters
+     *
+     * @param ServiceLocator $locator
+     * @return array
+     */
+    public static function getParams(ServiceLocator $locator)
+    {
+        /* @var $ruleParser RuleParser */
+        $ruleParser = new RuleParser;
+        $ruleParser->setRules(include CONFIG_DIR . 'Router.php')->getParsedRules();
+
+        /* @var $router Router */
+        $router = new Router($ruleParser);
+        $router->setBasePath(BASE_PATH);
+//        $router->setRouteMode(Router::ROUTE_MODE_PATHINFO);
+
+        // get parameters
+        $params = $router->parseUrl();
+
+        // add Router service
+        $locator->setService('router', $router);
+
+        // return
+        return $params;
     }
 }
