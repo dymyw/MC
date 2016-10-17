@@ -5,7 +5,7 @@
  * @package Core_Router
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-16
- * @version 2016-10-12
+ * @version 2016-10-17
  */
 
 namespace Core\Router;
@@ -259,6 +259,8 @@ class RuleParser implements RuleParserInterface
 
         // callback
         $callback = function($matches) use (&$allParams, &$requiredParams, &$paramsRegExp) {
+            $before = $matches[1] ? $this->uriDelimiter : '';
+
             // parameter name
             $param = $matches[2];
 
@@ -267,7 +269,7 @@ class RuleParser implements RuleParserInterface
                 $matches[3] = '+';
             }
 
-            !isset($matches[5]) && $matches[5] = '';
+            $after = empty($matches[5]) ? '' : $this->uriDelimiter;
 
             /**
              * Whether or not be required or array paramter:
@@ -310,8 +312,8 @@ class RuleParser implements RuleParserInterface
             else {
                 if ($param == $this->pairsIdentifier) {
                     $regExpTemp = '(?:' . $matches[4] . ')[\\' . $this->uriDelimiter . '](?:[^\\' . $this->uriDelimiter . ']+)';
-                    $paramsRegExp[$param]['regExpKey'] = '#' . $matches[4] . '#i';
-                    $paramsRegExp[$param]['regExpPairs'] = '#' . $regExpTemp . '#i';
+                    $paramsRegExp[$param]['regExpKey'] = '#^' . $matches[4] . '$#i';
+                    $paramsRegExp[$param]['regExpPairs'] = '#^' . $regExpTemp . '$#i';
                 } else {
                     $regExpTemp = $matches[4];
                 }
@@ -321,15 +323,15 @@ class RuleParser implements RuleParserInterface
 
             // parameter regExp
             $paramsRegExp[$param]['regExp'] = '#^' . $matches[4] . '$#i';
-            $paramsRegExp[$param]['before'] = $matches[1];
-            $paramsRegExp[$param]['after'] = $matches[5];
+            $paramsRegExp[$param]['before'] = $before;
+            $paramsRegExp[$param]['after'] = $after;
             $paramsRegExp[$param]['isArray'] = $isArrayParam;
 
             $regExpReplace = '(?<' . $param . '>' . $regExp . ')';
 
             if (!$isRequiredParam) {
-                $before = $matches[1] ? '[\\' . $this->uriDelimiter . ']' : '';
-                $after = $matches[5] ? '[\\' . $this->uriDelimiter . ']' : '';
+                $before = $before ? '[\\' . $before . ']' : '';
+                $after = $after ? '[\\' . $after . ']' : '';
                 $regExpReplace = '(?:' . $before . $regExpReplace . $after . ')?';
             }
 
