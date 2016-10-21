@@ -4,7 +4,7 @@
  *
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-11
- * @version 2016-10-18
+ * @version 2016-10-21
  */
 
 include_once 'init.inc.php';
@@ -17,5 +17,4 @@ $action = &$params['_action'];
 /* @var $front \Core\Controller\FrontController */
 $front = $locator->frontController;
 $result = $front->dispatch($controller, $action);
-
-// /fashion-red-women-top10-bestseller-eyeglasses-width-140-height-22-12.html
+$front->run($result);
