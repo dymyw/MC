@@ -4,7 +4,7 @@
  *
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-11
- * @version 2016-10-19
+ * @version 2016-10-21
  */
 
 include_once 'init.inc.php';
@@ -17,5 +17,6 @@ $action = &$params['_action'];
 /* @var $front \Core\Controller\FrontController */
 $front = $locator->frontController;
 $result = $front->dispatch($controller, $action);
+$front->run($result);
 
-echo 'Controller\Plugin';
+var_dump('Core\View\Model');
