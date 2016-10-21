@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-14
- * @version 2016-10-18
+ * @version 2016-10-21
  */
 
 namespace Core\Controller;
@@ -14,6 +14,9 @@ use Core\ServiceLocator\ServiceLocatorAwareInterface;
 use Core\ServiceLocator\ServiceLocator;
 use Core\Utils\WordConvertor;
 use Core\Loader\AutoLoader;
+use Core\View\Model\ViewModelInterface;
+use Core\View\Model\ViewModel;
+use Core\View\Model\JsonModel;
 
 class FrontController implements ServiceLocatorAwareInterface
 {
@@ -151,6 +154,16 @@ class FrontController implements ServiceLocatorAwareInterface
     }
 
     /**
+     * Get the template virtual name
+     *
+     * @return string
+     */
+    public function getTemplate()
+    {
+        return $this->getControllerName() . '/' . $this->getActionName();
+    }
+
+    /**
      * Dispatch
      *
      * @param string $controllerName
@@ -163,6 +176,39 @@ class FrontController implements ServiceLocatorAwareInterface
         $actionMethodName = $this->formatActionName($actionName);
         $result = $this->find($controllerClassName, $actionMethodName);
         return $result;
+    }
+
+    /**
+     * Process the result
+     * You can override it
+     *
+     * @param type $result
+     * @return string
+     */
+    public function run($result)
+    {
+        // don't use view
+        if (false === $result || PHP_SAPI == 'cli') {
+            return;
+        }
+
+        // json model
+        if ($result instanceof JsonModel) {
+            echo $result->serialize();
+            return;
+        }
+
+        // define view model
+        if ($result instanceof ViewModelInterface) {
+            $model = $result;
+        } else {
+            $model = new ViewModel($result);
+        }
+        if (!$model->getTemplate()) {
+            $model->setTemplate($this->getTemplate());
+        }
+
+        var_dump($model);
     }
 
     /**
