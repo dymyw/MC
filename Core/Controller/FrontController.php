@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-14
- * @version 2016-10-21
+ * @version 2016-10-24
  */
 
 namespace Core\Controller;
@@ -37,7 +37,7 @@ class FrontController implements ServiceLocatorAwareInterface
     /**
      * The default not found action name
      *
-     * @var type
+     * @var string
      */
     protected $notFoundActionName = 'not-found';
 
@@ -182,7 +182,7 @@ class FrontController implements ServiceLocatorAwareInterface
      * Process the result
      * You can override it
      *
-     * @param type $result
+     * @param ViewModelInterface|array|\ArrayAccess|\Traversable $result
      * @return string
      */
     public function run($result)
@@ -208,7 +208,15 @@ class FrontController implements ServiceLocatorAwareInterface
             $model->setTemplate($this->getTemplate());
         }
 
-        var_dump($model);
+        /* @var $layout ViewModelInterface */
+        $layout = $this->controller->getLayout();
+
+        // use layout
+        if ($layout) {
+            $layout->addChild($model);
+        }
+
+        var_dump($layout);
     }
 
     /**

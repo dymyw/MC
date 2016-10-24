@@ -18,5 +18,3 @@ $action = &$params['_action'];
 $front = $locator->frontController;
 $result = $front->dispatch($controller, $action);
 $front->run($result);
-
-var_dump('Core\View\Model');
