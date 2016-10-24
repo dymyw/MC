@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-05
- * @version 2016-10-19
+ * @version 2016-10-24
  */
 
 namespace Core\Controller;
@@ -13,9 +13,22 @@ namespace Core\Controller;
 use Core\ServiceLocator\ServiceLocatorAwareInterface;
 use Core\ServiceLocator\ServiceLocator;
 use Core\Controller\Plugin\PluginInterface;
+use Core\View\Model\ViewModelInterface;
 
+/**
+ * @property \Core\Controller\Plugin\Layout $layout The layout plugin
+ *
+ * @method \Core\Controller\Plugin\Layout layout($model) The layout plugin
+ */
 abstract class AbstractActionController implements ServiceLocatorAwareInterface
 {
+    /**
+     * Save the layout model, also {@see Plugin\Layout}
+     *
+     * @var ViewModelInterface
+     */
+    protected $layout = null;
+
     /**
      * @var ServiceLocator
      */
@@ -42,6 +55,29 @@ abstract class AbstractActionController implements ServiceLocatorAwareInterface
      */
     public function init()
     {}
+
+    /**
+     * Set layout
+     *
+     * @param ViewModelInterface $model
+     * @return AbstractActionController
+     * @see Plugin\Layout
+     */
+    public function setLayout(ViewModelInterface $model = null)
+    {
+        $this->layout = $model;
+        return $this;
+    }
+
+    /**
+     * Get layout
+     *
+     * @return ViewModelInterface
+     */
+    public function getLayout()
+    {
+        return $this->layout;
+    }
 
     /**
      * Get plugin instance

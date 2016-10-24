@@ -5,12 +5,12 @@
  * @package App_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-10-10
- * @version 2016-10-21
+ * @version 2016-10-24
  */
 
 namespace App\Controller;
 
-use Core\View\Model\JsonModel;
+//use Core\View\Model\JsonModel;
 
 class DefaultController extends AbstractActionController
 {
@@ -32,15 +32,15 @@ class DefaultController extends AbstractActionController
 //        var_dump($this->func->getSum(6, 6));
 
         // view model
-//        return [
-//            'data' => 'default - index',
-//        ];
+        return [
+            'data' => 'default - index',
+        ];
 
         // json model
-        return $jsonModel = JsonModel::init([
-            'name' => 'dymyw',
-            'lang' => 'php',
-        ])->setJsonpCallback('console.log');
+//        return $jsonModel = JsonModel::init([
+//            'name' => 'dymyw',
+//            'lang' => 'php',
+//        ])->setJsonpCallback('console.log');
     }
 
     public function notFoundAction()
