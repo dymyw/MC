@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-05
- * @version 2016-10-24
+ * @version 2016-11-02
  */
 
 namespace Core\Controller;
@@ -17,8 +17,10 @@ use Core\View\Model\ViewModelInterface;
 
 /**
  * @property \Core\Controller\Plugin\Layout $layout The layout plugin
+ * @property \Core\View\View $view The view plugin
  *
  * @method \Core\Controller\Plugin\Layout layout($model) The layout plugin
+ * @method \Core\View\View view() The view plugin
  */
 abstract class AbstractActionController implements ServiceLocatorAwareInterface
 {
@@ -32,7 +34,7 @@ abstract class AbstractActionController implements ServiceLocatorAwareInterface
     /**
      * @var ServiceLocator
      */
-    protected $locator;
+    protected $locator = null;
 
     /**
      * Constructor

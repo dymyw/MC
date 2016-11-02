@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-14
- * @version 2016-10-24
+ * @version 2016-11-02
  */
 
 namespace Core\Controller;
@@ -17,6 +17,7 @@ use Core\Loader\AutoLoader;
 use Core\View\Model\ViewModelInterface;
 use Core\View\Model\ViewModel;
 use Core\View\Model\JsonModel;
+use Core\View\View;
 
 class FrontController implements ServiceLocatorAwareInterface
 {
@@ -65,7 +66,7 @@ class FrontController implements ServiceLocatorAwareInterface
     /**
      * @var ServiceLocator
      */
-    protected $locator;
+    protected $locator = null;
 
     /**
      * Set the default controller name
@@ -211,12 +212,18 @@ class FrontController implements ServiceLocatorAwareInterface
         /* @var $layout ViewModelInterface */
         $layout = $this->controller->getLayout();
 
+        /* @var $view View */
+        $view = $this->controller->view();
+
         // use layout
         if ($layout) {
             $layout->addChild($model);
+            echo $view->render($layout);
         }
-
-        var_dump($layout);
+        // don't use layout
+        else {
+            echo $view->render($model);
+        }
     }
 
     /**

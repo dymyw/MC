@@ -4,7 +4,7 @@
  *
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-11
- * @version 2016-10-12
+ * @version 2016-11-02
  */
 
 use Core\Loader\AutoLoader;
@@ -19,6 +19,7 @@ define('CORE_DIR',  ROOT_DIR . 'Core' . DS);
 
 define('APP_DIR',       ROOT_DIR . 'App' . DS);
 define('CONFIG_DIR',    APP_DIR . 'Config' . DS);
+define('TPL_DIR',       APP_DIR . 'Template' . DS);
 
 define('WWW_DIR',   ROOT_DIR . 'Www' . DS);
 
