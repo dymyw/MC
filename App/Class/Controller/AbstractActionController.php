@@ -5,7 +5,7 @@
  * @package App_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-05
- * @version 2016-11-02
+ * @version 2016-11-03
  */
 
 namespace App\Controller;
@@ -23,5 +23,10 @@ abstract class AbstractActionController extends ActionController
                 ->addChild(new ViewModel('layout/includes/header'), '__header')
                 ->addChild(new ViewModel('layout/includes/sidebar'), '__sidebar')
                 ->addChild(new ViewModel('layout/includes/footer'), '__footer');
+
+        // register plugin to helper
+        $this->helpers->register('max', function() {
+            return $this->plugin('max');
+        });
     }
 }

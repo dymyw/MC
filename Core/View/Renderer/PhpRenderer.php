@@ -5,17 +5,20 @@
  * @package Core_View_Renderer
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-17
- * @version 2016-11-02
+ * @version 2016-11-03
  */
 
 namespace Core\View\Renderer;
 
+use Core\ServiceLocator\ServiceLocatorAwareInterface;
+use Core\ServiceLocator\ServiceLocator;
 use Core\View\Resolver\ResolverInterface;
 use Core\View\Resolver\Resolver;
 use Core\View\Variables;
 use Core\View\Model\ViewModelInterface;
+use Core\View\Helper\HelperInterface;
 
-class PhpRenderer implements RendererInterface
+class PhpRenderer implements RendererInterface, ServiceLocatorAwareInterface
 {
     /**
      * @var ResolverInterface
@@ -31,6 +34,11 @@ class PhpRenderer implements RendererInterface
      * @var Variables[]
      */
     private $__varsCached = [];
+
+    /**
+     * @var ServiceLocator
+     */
+    private $locator = null;
 
     /**
      * Constructor
@@ -161,6 +169,16 @@ class PhpRenderer implements RendererInterface
      */
     public function __get($name)
     {
+        // it will try to search from helpers if the $name is not set
+        if (!$this->__isset($name)) {
+            /* @var $helpers \Core\View\HelperManager */
+            $helpers = $this->locator->get('Core\View\HelperManager');
+            if ($helpers->exists($name)) {
+                $helper = $this->helper($name);
+                return $helper;
+            }
+        }
+
         // return
         return $this->__vars[$name] ?: '';
     }
@@ -200,6 +218,66 @@ class PhpRenderer implements RendererInterface
             return;
         }
         unset($this->__vars[$name]);
+    }
+
+    /**
+     * Get helper object
+     *
+     * @param string $name
+     * @return object
+     */
+    public function helper($name)
+    {
+        /* @var $helpers \Core\View\HelperManager */
+        $helpers = $this->locator->get('Core\View\HelperManager');
+
+        $helper = $helpers->get($name);
+        // set view for helper which is implement HelperInterface
+        if ($helper instanceof HelperInterface) {
+            $helper->setView($this);
+        }
+
+        return $helper;
+    }
+
+    /**
+     * Invoke the view helper
+     *
+     * @param string $name
+     * @param array $arguments
+     * @return mixed
+     * @see HelperManager
+     */
+    public function __call($name, $arguments)
+    {
+        // ensure set view
+        $this->helper($name);
+
+        /* @var $helpers \Core\View\HelperManager */
+        $helpers = $this->locator->get('Core\View\HelperManager');
+        return $helpers->__call($name, $arguments);
+    }
+
+    /**
+     * Set service locator
+     *
+     * @param ServiceLocator $serviceLocator
+     * @return PhpRenderer
+     */
+    public function setServiceLocator(ServiceLocator $serviceLocator)
+    {
+        $this->locator = $serviceLocator;
+        return $this;
+    }
+
+    /**
+     * Get service locator
+     *
+     * @throws \BadMethodCallException
+     */
+    public function getServiceLocator()
+    {
+        throw new \BadMethodCallException("It can't be invoked by outer class.");
     }
 
     /**
