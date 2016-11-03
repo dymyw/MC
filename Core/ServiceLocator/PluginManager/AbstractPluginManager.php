@@ -5,7 +5,7 @@
  * @package Core_ServiceLocator_PluginManager
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-12
- * @version 2016-10-19
+ * @version 2016-11-03
  */
 
 namespace Core\ServiceLocator\PluginManager;
@@ -98,6 +98,42 @@ abstract class AbstractPluginManager implements ServiceLocatorAwareInterface
 
         // return
         return $plugin;
+    }
+
+    /**
+     * Register a helper function
+     *
+     * @param string $name
+     * @param callable $callback
+     * @return \Core\View\HelperManager
+     */
+    public function register($name, $callback)
+    {
+        $this->callbacks[$name] = $callback;
+        return $this;
+    }
+
+    /**
+     * Unregister a helper function
+     *
+     * @param string $name
+     * @return \Core\View\HelperManager
+     */
+    public function unregister($name)
+    {
+        unset($this->callbacks[$name]);
+        return $this;
+    }
+
+    /**
+     * Whether or not exist the plugin name
+     *
+     * @param string $name
+     * @return bool
+     */
+    public function exists($name)
+    {
+        return array_key_exists($name, $this->callbacks) || (bool) $this->getPluginClass($name);
     }
 
     /**

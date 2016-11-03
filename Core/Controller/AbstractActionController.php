@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-05
- * @version 2016-11-02
+ * @version 2016-11-03
  */
 
 namespace Core\Controller;
@@ -17,6 +17,7 @@ use Core\View\Model\ViewModelInterface;
 
 /**
  * @property \Core\Model\ModelManager|\App\Hint\ModelManager $models The model manager
+ * @property \Core\View\HelperManager|\App\Hint\HelperManager $helpers The helper manager
  *
  * @property \Core\Controller\Plugin\Layout $layout The layout plugin
  * @property \Core\View\View $view The view plugin
@@ -95,7 +96,7 @@ abstract class AbstractActionController implements ServiceLocatorAwareInterface
         $plugins = $this->locator->get('Core\Controller\PluginManager');
 
         $plugin = $plugins->get($name);
-
+        // set controller for plugin which is implement PluginInterface
         if ($plugin instanceof PluginInterface) {
             $plugin->setController($this);
         }
@@ -114,6 +115,11 @@ abstract class AbstractActionController implements ServiceLocatorAwareInterface
         // model manager
         if ('models' === $name) {
             return $this->locator->get('Core\Model\ModelManager');
+        }
+
+        // view helper manager
+        if ('helpers' === $name) {
+            return $this->locator->get('Core\View\HelperManager');
         }
 
         // controller plugin instance

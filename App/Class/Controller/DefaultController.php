@@ -5,7 +5,7 @@
  * @package App_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-10-10
- * @version 2016-10-24
+ * @version 2016-11-03
  */
 
 namespace App\Controller;
@@ -37,8 +37,13 @@ class DefaultController extends AbstractActionController
 //        ];
 
         // test model
-        $data = $this->models->test->getTest('dymyw');
-        return $data;
+//        $data = $this->models->test->getTest('dymyw');
+//        return $data;
+
+        // min helper
+        return [
+            'data' => $this->helpers->min(12, 36),
+        ];
 
         // json model
 //        return $jsonModel = JsonModel::init([
