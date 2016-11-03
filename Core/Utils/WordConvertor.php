@@ -5,7 +5,7 @@
  * @package Core_Utils
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-10-09
- * @version 2016-10-18
+ * @version 2016-11-03
  */
 
 namespace Core\Utils;
@@ -14,7 +14,7 @@ class WordConvertor
 {
     /**
      * @param string $str
-     * @param boolean $lowerFirst
+     * @param bool $lowerFirst
      * @return string
      */
     public static function dashToCamelCase($str, $lowerFirst = false)
@@ -24,7 +24,7 @@ class WordConvertor
 
     /**
      * @param string $str
-     * @param boolean $lowerFirst
+     * @param bool $lowerFirst
      * @return string
      */
     public static function underscoreToCamelCase($str, $lowerFirst = false)
@@ -34,7 +34,7 @@ class WordConvertor
 
     /**
      * @param string $str
-     * @param boolean $toLower
+     * @param bool $toLower
      * @return string
      */
     public static function camelCaseToDash($str, $toLower = true)
@@ -44,7 +44,7 @@ class WordConvertor
 
     /**
      * @param string $str
-     * @param boolean $toLower
+     * @param bool $toLower
      * @return string
      */
     public static function camelCaseToUnderscore($str, $toLower = true)
@@ -55,7 +55,7 @@ class WordConvertor
     /**
      * @param string $str
      * @param char|char[] $separator
-     * @param boolean $lowerFirst
+     * @param bool $lowerFirst
      * @return string
      */
     public static function separatorToCamelCase($str, $separator = ['-', '_'], $lowerFirst = false)
@@ -72,7 +72,7 @@ class WordConvertor
     /**
      * @param string $str
      * @param char $separator
-     * @param boolean $toLower
+     * @param bool $toLower
      * @return string
      */
     public static function camelCaseToSeparator($str, $separator = '-', $toLower = true)

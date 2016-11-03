@@ -19,7 +19,7 @@ class HelperManager extends AbstractPluginManager
      * Get the plugin class name
      *
      * @param string $name
-     * @return string|boolean
+     * @return string|bool
      */
     public function getPluginClass($name)
     {

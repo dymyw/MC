@@ -199,7 +199,7 @@ class PhpRenderer implements RendererInterface, ServiceLocatorAwareInterface
      * Overloading: proxy to Variables container
      *
      * @param string $name
-     * @return boolean
+     * @return bool
      */
     public function __isset($name)
     {
