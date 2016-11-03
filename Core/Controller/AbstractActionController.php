@@ -16,6 +16,8 @@ use Core\Controller\Plugin\PluginInterface;
 use Core\View\Model\ViewModelInterface;
 
 /**
+ * @property \Core\Model\ModelManager|\App\Hint\ModelManager $models The model manager
+ *
  * @property \Core\Controller\Plugin\Layout $layout The layout plugin
  * @property \Core\View\View $view The view plugin
  *
@@ -109,6 +111,11 @@ abstract class AbstractActionController implements ServiceLocatorAwareInterface
      */
     public function __get($name)
     {
+        // model manager
+        if ('models' === $name) {
+            return $this->locator->get('Core\Model\ModelManager');
+        }
+
         // controller plugin instance
         return $this->plugin($name);
     }

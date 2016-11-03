@@ -32,9 +32,13 @@ class DefaultController extends AbstractActionController
 //        var_dump($this->func->getSum(6, 6));
 
         // view model
-        return [
-            'data' => 'default - index',
-        ];
+//        return [
+//            'data' => 'default - index',
+//        ];
+
+        // test model
+        $data = $this->models->test->getTest('dymyw');
+        return $data;
 
         // json model
 //        return $jsonModel = JsonModel::init([
