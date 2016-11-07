@@ -5,7 +5,7 @@
  * @package Core_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-10-18
+ * @version 2016-11-07
  */
 
 namespace Core\ServiceLocator;
@@ -215,7 +215,7 @@ class ServiceLocator implements ServiceLocatorInterface
              */
             elseif (is_callable($invokable)) {
                 $instance = $invokable($this);
-                $this->invokables[$canonicalName] = $instance;
+                $this->services[$canonicalName] = $instance;
                 return $instance;
             }
         }
