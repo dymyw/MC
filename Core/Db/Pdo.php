@@ -5,7 +5,7 @@
  * @package Core_Db
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-09-29
+ * @version 2016-11-08
  */
 
 namespace Core\Db;
@@ -58,7 +58,7 @@ class Pdo extends \PDO
         }
         // also pass some parameters
         else {
-            $stmt = call_user_func_array(array($this, 'prepareParams'), func_get_args());
+            $stmt = call_user_func_array([$this, 'prepareParams'], func_get_args());
             if (!$stmt) {
                 return false;
             }
@@ -74,9 +74,9 @@ class Pdo extends \PDO
      * @param string $sql
      * @return string|false
      * @example
-     *  Pdo::getOne($sql)
+     *  Pdo::getOne($sql);
      *  Pdo::getOne($sql, [$first, $second]);
-     *  Pdo::getOne($sql, ['key1' => $first, 'key2' => $second])
+     *  Pdo::getOne($sql, ['key1' => $first, 'key2' => $second]);
      *  Pdo::getOne($sql, $first, $second, $third);
      */
     public function getOne($sql)
@@ -91,7 +91,7 @@ class Pdo extends \PDO
         }
         // also pass some parameters
         else {
-            $stmt = call_user_func_array(array($this, 'prepareParams'), func_get_args());
+            $stmt = call_user_func_array([$this, 'prepareParams'], func_get_args());
             if (!$stmt) {
                 return false;
             }
@@ -109,9 +109,9 @@ class Pdo extends \PDO
      * @param string $sql
      * @return string|false
      * @example
-     *  Pdo::getRow($sql)
+     *  Pdo::getRow($sql);
      *  Pdo::getRow($sql, [$first, $second]);
-     *  Pdo::getRow($sql, ['key1' => $first, 'key2' => $second])
+     *  Pdo::getRow($sql, ['key1' => $first, 'key2' => $second]);
      *  Pdo::getRow($sql, $first, $second, $third);
      */
     public function getRow($sql)
@@ -126,7 +126,7 @@ class Pdo extends \PDO
         }
         // also pass some parameters
         else {
-            $stmt = call_user_func_array(array($this, 'prepareParams'), func_get_args());
+            $stmt = call_user_func_array([$this, 'prepareParams'], func_get_args());
             if (!$stmt) {
                 return false;
             }
@@ -144,9 +144,9 @@ class Pdo extends \PDO
      * @param string $sql
      * @return string|false
      * @example
-     *  Pdo::getAll($sql)
+     *  Pdo::getAll($sql);
      *  Pdo::getAll($sql, [$first, $second]);
-     *  Pdo::getAll($sql, ['key1' => $first, 'key2' => $second])
+     *  Pdo::getAll($sql, ['key1' => $first, 'key2' => $second]);
      *  Pdo::getAll($sql, $first, $second, $third);
      */
     public function getAll($sql)
@@ -161,7 +161,7 @@ class Pdo extends \PDO
         }
         // also pass some parameters
         else {
-            $stmt = call_user_func_array(array($this, 'prepareParams'), func_get_args());
+            $stmt = call_user_func_array([$this, 'prepareParams'], func_get_args());
             if (!$stmt) {
                 return false;
             }
@@ -177,9 +177,9 @@ class Pdo extends \PDO
      * @param string $sql
      * @return string|false
      * @example
-     *  Pdo::getPairs($sql)
+     *  Pdo::getPairs($sql);
      *  Pdo::getPairs($sql, [$first, $second]);
-     *  Pdo::getPairs($sql, ['key1' => $first, 'key2' => $second])
+     *  Pdo::getPairs($sql, ['key1' => $first, 'key2' => $second]);
      *  Pdo::getPairs($sql, $first, $second, $third);
      */
     public function getPairs($sql)
@@ -194,7 +194,7 @@ class Pdo extends \PDO
         }
         // also pass some parameters
         else {
-            $stmt = call_user_func_array(array($this, 'prepareParams'), func_get_args());
+            $stmt = call_user_func_array([$this, 'prepareParams'], func_get_args());
             if (!$stmt) {
                 return false;
             }
@@ -210,9 +210,9 @@ class Pdo extends \PDO
      * @param string $sql
      * @return string|false
      * @example
-     *  Pdo::getColumn($sql)
+     *  Pdo::getColumn($sql);
      *  Pdo::getColumn($sql, [$first, $second]);
-     *  Pdo::getColumn($sql, ['key1' => $first, 'key2' => $second])
+     *  Pdo::getColumn($sql, ['key1' => $first, 'key2' => $second]);
      *  Pdo::getColumn($sql, $first, $second, $third);
      */
     public function getColumn($sql)
@@ -227,7 +227,7 @@ class Pdo extends \PDO
         }
         // also pass some parameters
         else {
-            $stmt = call_user_func_array(array($this, 'prepareParams'), func_get_args());
+            $stmt = call_user_func_array([$this, 'prepareParams'], func_get_args());
             if (!$stmt) {
                 return false;
             }

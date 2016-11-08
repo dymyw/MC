@@ -5,7 +5,7 @@
  * @package Core_Controller_Plugin
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-19
- * @version 2016-11-07
+ * @version 2016-11-08
  */
 
 namespace Core\Controller\Plugin;
@@ -67,8 +67,8 @@ class Param implements ServiceLocatorAwareInterface
      * @param string|int $args
      * @return mixed It will return null if noset
      * @example
-     *  $this->param->get('name')
-     *  $this->param->get('filter', 'type', 1)
+     *  $this->param->get('name');
+     *  $this->param->get('filter', 'type', 1);
      */
     public function get($args)
     {

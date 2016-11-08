@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-14
- * @version 2016-11-02
+ * @version 2016-11-08
  */
 
 namespace Core\Controller;
@@ -231,7 +231,8 @@ class FrontController implements ServiceLocatorAwareInterface
      *
      * @param string $controllerName
      * @return string
-     * @example default-name => DefaultNameController
+     * @example
+     *  default-name => DefaultNameController
      */
     public function formatControllerName($controllerName)
     {
@@ -248,7 +249,8 @@ class FrontController implements ServiceLocatorAwareInterface
      *
      * @param string $actionName
      * @return string
-     * @example action-name => actionNameAction
+     * @example
+     *  action-name => actionNameAction
      */
     public function formatActionName($actionName)
     {
@@ -267,7 +269,8 @@ class FrontController implements ServiceLocatorAwareInterface
      *
      * @param string $formatedName
      * @return string
-     * @example App\Controller\DefaultNameController => default-name
+     * @example
+     *  App\Controller\DefaultNameController => default-name
      */
     public function reflectControllerName($formatedName)
     {
@@ -281,7 +284,8 @@ class FrontController implements ServiceLocatorAwareInterface
      *
      * @param stringe $formatedName
      * @return string
-     * @example actionNameAction => action-name
+     * @example
+     *  actionNameAction => action-name
      */
     public function reflectActionName($formatedName)
     {

@@ -5,7 +5,7 @@
  * @package Core_Loader
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-12
- * @version 2016-09-29
+ * @version 2016-11-08
  */
 
 namespace Core\Loader;
@@ -23,8 +23,8 @@ class AutoLoader
      * @param array $namespaces
      * @example
      *  AutoLoader::setNamespaces([
-     *      'Core' => CORE_DIR,
-     *      'App' => APP_DIR . 'Class' . DS,
+     *      'Core'  => CORE_DIR,
+     *      'App'   => APP_DIR . 'Class' . DS,
      *  ]);
      */
     public static function setNamespaces(array $namespaces)
