@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-05
- * @version 2016-11-03
+ * @version 2016-11-08
  */
 
 namespace Core\Controller;
@@ -21,9 +21,11 @@ use Core\View\Model\ViewModelInterface;
  *
  * @property \Core\Controller\Plugin\Layout $layout The layout plugin
  * @property \Core\View\View $view The view plugin
+ * @property \Core\Controller\Plugin\Param $param Get the parameter value plugin
  *
  * @method \Core\Controller\Plugin\Layout layout($model) The layout plugin
  * @method \Core\View\View view() The view plugin
+ * @method \Core\Controller\Plugin\Param param(string $name, $default) Get the parameter value
  */
 abstract class AbstractActionController implements ServiceLocatorAwareInterface
 {
@@ -48,6 +50,11 @@ abstract class AbstractActionController implements ServiceLocatorAwareInterface
     {
         // set service locator
         $this->setServiceLocator($locator);
+
+        // register view helpers
+        $this->helpers->register('param', function() {
+            return $this->plugin('param');
+        });
 
         // initialize
         $this->init();
