@@ -21,7 +21,7 @@ class Func implements ServiceLocatorAwareInterface
      * Set service locator
      *
      * @param ServiceLocator $serviceLocator
-     * @return Controller
+     * @return Func
      */
     public function setServiceLocator(ServiceLocator $serviceLocator)
     {

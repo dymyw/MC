@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-14
- * @version 2016-11-08
+ * @version 2016-11-09
  */
 
 namespace Core\Controller;
@@ -390,6 +390,7 @@ class FrontController implements ServiceLocatorAwareInterface
      * Set service locator
      *
      * @param ServiceLocator $serviceLocator
+     * @return FrontController
      */
     public function setServiceLocator(ServiceLocator $serviceLocator)
     {
