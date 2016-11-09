@@ -5,7 +5,7 @@
  * @package App_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-10-10
- * @version 2016-11-03
+ * @version 2016-11-09
  */
 
 namespace App\Controller;
@@ -39,6 +39,13 @@ class DefaultController extends AbstractActionController
         // test model
 //        $data = $this->models->test->getTest('dymyw');
 //        return $data;
+
+        // core url helper
+        echo $this->helpers->url('eyeglasses/gender', [
+            'gender' => 'men',
+            'page' => 2,
+        ], false, true);
+
 
         // min helper
         return [

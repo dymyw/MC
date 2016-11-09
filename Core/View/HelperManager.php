@@ -5,7 +5,7 @@
  * @package Core_View
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-19
- * @version 2016-11-03
+ * @version 2016-11-09
  */
 
 namespace Core\View;
@@ -13,6 +13,11 @@ namespace Core\View;
 use Core\ServiceLocator\PluginManager\AbstractPluginManager;
 use Core\Loader\AutoLoader;
 
+/**
+ * @property \Core\View\Helper\Url $url
+ *
+ * @method \Core\View\Helper\Url url($path = 'default/index', $params = [], $https = false, $forceHost = false)
+ */
 class HelperManager extends AbstractPluginManager
 {
     /**

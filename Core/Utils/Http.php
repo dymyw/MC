@@ -5,13 +5,25 @@
  * @package Core_Utils
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-19
- * @version 2016-11-08
+ * @version 2016-11-09
  */
 
 namespace Core\Utils;
 
 class Http
 {
+    /**
+     * If current page is using HTTPS protocol, it returns true
+     *
+     * @return bool
+     */
+    public static function isHttps()
+    {
+        return
+            (isset($_SERVER['HTTP_X_SERVER_PORT']) && $_SERVER['HTTP_X_SERVER_PORT'] == 443)
+            || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+    }
+
     /**
      * @param string $type
      * @param string|null $charset
