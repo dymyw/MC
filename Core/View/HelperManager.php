@@ -5,7 +5,7 @@
  * @package Core_View
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-19
- * @version 2016-11-10
+ * @version 2016-11-14
  */
 
 namespace Core\View;
@@ -20,6 +20,8 @@ use Core\Loader\AutoLoader;
  * @method \Core\View\Helper\Controller controller() Controller name
  * @method \Core\View\Helper\Action action() Action name
  * @method \Core\View\Helper\PageId pageId() Controller + Action
+ * @method \Core\View\Helper\Escape escape($str) Escape the html string
+ * @method \Core\View\Helper\Date date($date, $format = 'Y-m-d H:i:s', $default = null) Format date
  */
 class HelperManager extends AbstractPluginManager
 {
