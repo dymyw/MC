@@ -1,0 +1,233 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.none {
+    display: none;
+}
+
+/* BGN popup */
+#overlay {
+    z-index: 100;
+}
+.popup-wrapper {
+    z-index: 1000;
+}
+.popup-container {
+    position: relative;
+    min-height: 200px;
+    min-width: 400px;
+    background-color: #fff;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+    border: 3px solid rgba(0,0,0,.3);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+.popup-header {
+    min-height: 32px;
+    line-height: 32px;
+}
+.popup-header h3 {
+    margin: 0;
+    text-indent: 15px;
+    font-size: 14px;
+    background-color: #D5EAF9;
+}
+.popup-message {
+    padding: 0 40px;
+}
+.popup-main {
+    padding: 10px;
+    min-height: 80px;
+}
+.popup-footer {
+    text-align: center;
+}
+.popup-footer button {
+    margin: 0 25px;
+}
+.popup-close {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 16px;
+    height: 16px;
+    text-indent: -9999em;
+    cursor: pointer;
+    background: url(images/popup/popup-close.png) no-repeat 0 0;
+}
+.tip-container {
+    max-width: 500px;
+    position: relative;
+    padding: 20px 40px 20px 30px;
+    border-width: 0 1px 1px 1px;
+    border-style:solid;
+    border-color: #ddd;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0px 4px 4px rgba(0,0,0,.3);
+    background: #fff;
+}
+.tip-message {
+    line-height: 26px;
+    text-align: center;
+}
+.tip-close {
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    text-indent: -999em;
+    background: url(images/popup/popup-close.png) no-repeat 0 0;
+}
+#popup-warning .tip-container {
+    padding: 10px 40px 10px 20px;
+    border-width: 0 0 1px 1px;
+    background-color: #FFCECF;
+    background-image: none;
+    border-color: #E08E90;
+}
+/* END popup */
+
+/* BGN tooltip */
+.tooltip, .tooltip .arrow-warpper .arrow {
+    background: #fff;
+    border: 1px solid #c2c2c2;
+    z-index: 1000;
+}
+.tooltip {
+    padding: 15px 20px;
+    color: #000;
+    border-radius: 6px;
+    min-width: 150px;
+    max-width: 500px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+.tool-tip-close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 0;
+    padding-left: 12px;
+    height: 12px;
+    background: url('images/tooltip/tooltip-close.png') 0 0 no-repeat;
+    opacity: .6;
+    overflow: hidden;
+    cursor: pointer;
+}
+.tool-tip-content {
+    font-size: 16px;
+}
+.tool-tip-content a {
+    color: #5b7eaf;
+}
+.tool-tip-close:hover {
+     opacity: 1;
+}
+.tooltip .arrow-warpper {
+    overflow: hidden;
+    position: absolute;
+}
+.tooltip .arrow-warpper .arrow {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.tooltip .arrow-warpper-normal, .tooltip .arrow-normal {
+    position: absolute;
+    height:0px;
+    width:0px;
+}
+.tooltip .arrow-left {
+    border: 10px solid transparent;
+    border-right-color: #c2c2c2;
+    border-left: none;
+}
+.tooltip .arrow-normal.arrow-left {
+    border-right-color: #fff;
+}
+.tooltip .arrow-top {
+    border: 10px solid transparent;
+    border-bottom-color: #c2c2c2;
+    border-top: none;
+}
+.tooltip .arrow-normal.arrow-top {
+    border-bottom-color: #fff;
+}
+.tooltip .arrow-bottom {
+    border: 10px solid transparent;
+    border-top-color: #c2c2c2;
+    border-bottom: none;
+}
+.tooltip .arrow-normal.arrow-bottom {
+    border-top-color: #fff;
+}
+.tooltip .arrow-right {
+    border: 10px solid transparent;
+    border-left-color: #c2c2c2;
+    border-right: none;
+}
+.tooltip .arrow-normal.arrow-right {
+    border-left-color: #fff;
+}
+
+.tip-error {
+    color: #ff6c00;
+}
+/* END tooltip */
+
+/* BGN paginator */
+.pagination {
+    float: right;
+    display: inline;
+    text-align: right;
+    padding-right: 5px;
+    margin-top: 9px;
+}
+.pagination .pages,
+.pagination .records,
+.pagination .pagesize {
+    text-align: center;
+    margin: 0 5px;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+.pagesize {
+    padding: 1px;
+    vertical-align: middle;
+}
+.pages {
+    line-height: 23px;
+    height: 23px;
+
+}
+.pages a {
+    cursor: pointer;
+    padding: 3px 7px;
+    color: #333;
+}
+.pages a:hover {
+    color: #ff6c00;
+}
+.pages .current{
+    padding: 3px 7px;
+    color: #fff;
+    background-color: #555;
+}
+.separator {
+    padding: 3px 3px;
+}
+/** END paginator **/

@@ -4,7 +4,7 @@
  *
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-11
- * @version 2016-11-08
+ * @version 2016-11-15
  */
 
 use Core\Loader\AutoLoader;
@@ -28,6 +28,9 @@ define('CONFIG_DIR',    APP_DIR . 'Config' . DS);
 define('TPL_DIR',       APP_DIR . 'Template' . DS);
 
 define('WWW_DIR',       ROOT_DIR . 'Www' . DS);
+define('CSS_DIR',       WWW_DIR . 'themes' . DS . 'default' . DS);
+define('JS_DIR',        WWW_DIR . 'js' . DS);
+define('IMG_DIR',       WWW_DIR . 'images' . DS);
 
 /**
  * The base path of URLs
