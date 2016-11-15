@@ -5,14 +5,14 @@
  * @package Core_Controller_Plugin
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-17
- * @version 2016-10-24
+ * @version 2016-11-15
  */
 
 namespace Core\Controller\Plugin;
 
 use Core\Controller\AbstractActionController;
 
-class AbstractPlugin implements PluginInterface
+abstract class AbstractPlugin implements PluginInterface
 {
     /**
      * @var AbstractActionController
