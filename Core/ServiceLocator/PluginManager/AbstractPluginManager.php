@@ -5,7 +5,7 @@
  * @package Core_ServiceLocator_PluginManager
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-12
- * @version 2016-11-03
+ * @version 2016-11-15
  */
 
 namespace Core\ServiceLocator\PluginManager;
@@ -13,11 +13,12 @@ namespace Core\ServiceLocator\PluginManager;
 use Core\ServiceLocator\ServiceLocatorAwareInterface;
 use Core\ServiceLocator\ServiceLocator;
 use Core\ServiceLocator\InitializerInterface;
+use Core\View\HelperManager;
 
 abstract class AbstractPluginManager implements ServiceLocatorAwareInterface
 {
     /**
-     * @var ServiceLocator
+     * @var ServiceLocator|\Hint\ServiceLocator
      */
     protected $locator = null;
 
@@ -105,7 +106,7 @@ abstract class AbstractPluginManager implements ServiceLocatorAwareInterface
      *
      * @param string $name
      * @param callable $callback
-     * @return \Core\View\HelperManager
+     * @return HelperManager
      */
     public function register($name, $callback)
     {
@@ -117,7 +118,7 @@ abstract class AbstractPluginManager implements ServiceLocatorAwareInterface
      * Unregister a helper function
      *
      * @param string $name
-     * @return \Core\View\HelperManager
+     * @return HelperManager
      */
     public function unregister($name)
     {

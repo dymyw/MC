@@ -5,7 +5,7 @@
  * @package Core_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-11-07
+ * @version 2016-11-15
  */
 
 namespace Core\ServiceLocator;
@@ -16,6 +16,7 @@ use Core\Utils\Reflection;
  * @property \Core\Db\Pdo $db The DB instance
  * @property \Core\Router\Router $router The Router instance
  * @property \Core\Controller\FrontController $frontController The front controller
+ * @property \Core\Controller\AbstractActionController $controller The current controller instance
  *
  * @property string $controllerName The controller name
  * @property string $actionName The action name
@@ -33,24 +34,24 @@ class ServiceLocator implements ServiceLocatorInterface
     protected $invokables = [];
 
     /**
-     * @ver array
+     * @var array
      */
     protected $aliases = [];
 
     /**
-     * @ver array
+     * @var array
      */
     protected $readonly = [];
 
     /**
-     * @ver array
+     * @var array
      */
     protected $parameters = [];
 
     /**
      * Constructor
      *
-     * @param array $config
+     * @param array|ArrayAccess $config
      */
     public function __construct($config = [])
     {
@@ -132,6 +133,9 @@ class ServiceLocator implements ServiceLocatorInterface
      * @param bool $readonly
      * @return ServiceLocator
      * @throws \InvalidArgumentException
+     * @example
+     *  $this->setInvokable('db', 'Core\Db\Pdo', ['dsn' => 'xxx', 'username' => 'xxx', 'password' => 'xxx']);
+     *  $this->setInvokable('db', 'App\Db', true);
      */
     public function setInvokable($name, $invokable, $params = false, $readonly = false)
     {
@@ -184,6 +188,7 @@ class ServiceLocator implements ServiceLocatorInterface
      */
     public function get($name)
     {
+        // get the canonical name
         $canonicalName = $this->getCanonicalName($name);
 
         // search from services
@@ -233,12 +238,12 @@ class ServiceLocator implements ServiceLocatorInterface
     }
 
     /**
-     * Get the params of invokable class
+     * Get the params of invokable class/callback
      *
      * @param string $name
      * @return array
      */
-    public function getInvokableParams($name)
+    protected function getInvokableParams($name)
     {
         $canonicalName = $this->getCanonicalName($name);
         return isset($this->parameters[$canonicalName]) ? $this->parameters[$canonicalName] : [];
@@ -270,7 +275,7 @@ class ServiceLocator implements ServiceLocatorInterface
     }
 
     /**
-     * Get the canonical name of server
+     * Get the canonical name
      *
      * @param string $name
      * @return string|null
@@ -297,6 +302,6 @@ class ServiceLocator implements ServiceLocatorInterface
     protected function isReadonly($name)
     {
         $canonicalName = $this->getCanonicalName($name);
-        return $canonicalName && $this->readonly[$canonicalName];
+        return $canonicalName && !empty($this->readonly[$canonicalName]);
     }
 }

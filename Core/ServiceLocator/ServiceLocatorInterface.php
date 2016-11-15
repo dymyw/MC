@@ -5,7 +5,7 @@
  * @package Core_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-09-29
+ * @version 2016-11-15
  */
 
 namespace Core\ServiceLocator;
@@ -18,7 +18,7 @@ interface ServiceLocatorInterface
      * @param string $name
      * @param mixed $value
      * @param bool $readonly
-     * @return ServiceLocatorInterface
+     * @return ServiceLocator
      * @throws \InvalidArgumentException
      */
     public function setService($name, $value, $readonly = false);
@@ -30,8 +30,11 @@ interface ServiceLocatorInterface
      * @param string|callable $invokable
      * @param array|bool $params
      * @param bool $readonly
-     * @return ServiceLocatorInterface
+     * @return ServiceLocator
      * @throws \InvalidArgumentException
+     * @example
+     *  $this->setInvokable('db', 'Core\Db\Pdo', ['dsn' => 'xxx', 'username' => 'xxx', 'password' => 'xxx']);
+     *  $this->setInvokable('db', 'App\Db', true);
      */
     public function setInvokable($name, $invokable, $params = false, $readonly = false);
 
