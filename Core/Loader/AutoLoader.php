@@ -5,7 +5,7 @@
  * @package Core_Loader
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-12
- * @version 2016-11-08
+ * @version 2016-11-15
  */
 
 namespace Core\Loader;
@@ -49,6 +49,8 @@ class AutoLoader
      * @param string $className
      * @param string $suffix
      * @return bool
+     * @example
+     *  AutoLoader::load('Smarty', '.class.php');
      */
     public static function load($className, $suffix = '.php')
     {
@@ -62,7 +64,7 @@ class AutoLoader
         if (isset($ns[$prefix])) {
             $file = $ns[$prefix] . $path . $suffix;
             if (file_exists($file)) {
-                include_once $file;
+                require_once $file;
                 return true;
             }
         }
@@ -72,7 +74,7 @@ class AutoLoader
         foreach ($ns as $dir) {
             $file = $dir . $trunk . $suffix;
             if (file_exists($file)) {
-                include_once $file;
+                require_once $file;
                 return true;
             }
         }
@@ -86,6 +88,10 @@ class AutoLoader
      * @param string $baseName
      * @param string $suffix
      * @return string|bool
+     * @example
+     *  $helper = 'Escape';
+     *  AutoLoader::find("View_Helper_{$helper}");
+     *      => Core\View\Helper\Escape
      */
     public static function find($baseName, $suffix = '.php')
     {
