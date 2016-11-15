@@ -5,13 +5,18 @@
  * @package Core_Db
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-11-08
+ * @version 2016-11-15
  */
 
 namespace Core\Db;
 
 class Pdo extends \PDO
 {
+    /**
+     * @var int
+     */
+    protected $defaultFetchMode = \PDO::FETCH_ASSOC;
+
     /**
      * Constructor
      *
@@ -39,7 +44,7 @@ class Pdo extends \PDO
         $this->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
         // set the default fetch mode
-        $this->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+        $this->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, $this->defaultFetchMode);
     }
 
     /**
@@ -86,7 +91,7 @@ class Pdo extends \PDO
             // \PDO::query() returns a \PDOStatement object, or FALSE on failure
             $stmt = $this->query($sql);
             if (false === $stmt) {
-                return $stmt;
+                return false;
             }
         }
         // also pass some parameters
@@ -107,7 +112,7 @@ class Pdo extends \PDO
      * Return a row
      *
      * @param string $sql
-     * @return string|false
+     * @return array|false
      * @example
      *  Pdo::getRow($sql);
      *  Pdo::getRow($sql, [$first, $second]);
@@ -121,7 +126,7 @@ class Pdo extends \PDO
             // \PDO::query() returns a \PDOStatement object, or FALSE on failure
             $stmt = $this->query($sql);
             if (false === $stmt) {
-                return $stmt;
+                return false;
             }
         }
         // also pass some parameters
@@ -142,7 +147,7 @@ class Pdo extends \PDO
      * Return all rows
      *
      * @param string $sql
-     * @return string|false
+     * @return array|false
      * @example
      *  Pdo::getAll($sql);
      *  Pdo::getAll($sql, [$first, $second]);
@@ -156,7 +161,7 @@ class Pdo extends \PDO
             // \PDO::query() returns a \PDOStatement object, or FALSE on failure
             $stmt = $this->query($sql);
             if (false === $stmt) {
-                return $stmt;
+                return false;
             }
         }
         // also pass some parameters
@@ -175,7 +180,7 @@ class Pdo extends \PDO
      * Return the key => value pair array
      *
      * @param string $sql
-     * @return string|false
+     * @return array|false
      * @example
      *  Pdo::getPairs($sql);
      *  Pdo::getPairs($sql, [$first, $second]);
@@ -189,7 +194,7 @@ class Pdo extends \PDO
             // \PDO::query() returns a \PDOStatement object, or FALSE on failure
             $stmt = $this->query($sql);
             if (false === $stmt) {
-                return $stmt;
+                return false;
             }
         }
         // also pass some parameters
@@ -208,7 +213,7 @@ class Pdo extends \PDO
      * Return the first column data
      *
      * @param string $sql
-     * @return string|false
+     * @return array|false
      * @example
      *  Pdo::getColumn($sql);
      *  Pdo::getColumn($sql, [$first, $second]);
@@ -222,7 +227,7 @@ class Pdo extends \PDO
             // \PDO::query() returns a \PDOStatement object, or FALSE on failure
             $stmt = $this->query($sql);
             if (false === $stmt) {
-                return $stmt;
+                return false;
             }
         }
         // also pass some parameters
