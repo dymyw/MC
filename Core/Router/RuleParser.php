@@ -5,7 +5,7 @@
  * @package Core_Router
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-16
- * @version 2016-10-17
+ * @version 2016-11-15
  */
 
 namespace Core\Router;
@@ -156,7 +156,7 @@ class RuleParser implements RuleParserInterface
     /**
      * To parse all the rules
      *
-     * @return array
+     * @return RuleParser
      */
     protected function parseRules()
     {
@@ -168,6 +168,10 @@ class RuleParser implements RuleParserInterface
 
         // start to parse
         foreach ($this->rules as $path => $rules) {
+            if (is_numeric($path)) {
+                $path = '*';
+            }
+
             if (!isset($parsedRules[$path])) {
                 $parsedRules[$path] = [];
             }
@@ -190,7 +194,7 @@ class RuleParser implements RuleParserInterface
         }
 
         $this->parsedRules = $parsedRules;
-        return $this->parsedRules;
+        return $this;
     }
 
     /**
@@ -238,7 +242,7 @@ class RuleParser implements RuleParserInterface
      * Get rule params
      *
      * @param string $rule
-     * @return array
+     * @return array [pattern, allParams, requiredParams, paramsRegExp]
      * @throws \RuntimeException
      */
     protected function parseStandardRule($rule)
