@@ -5,7 +5,7 @@
  * @package App_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-10-10
- * @version 2016-11-09
+ * @version 2016-11-16
  */
 
 namespace App\Controller;
@@ -39,6 +39,12 @@ class DefaultController extends AbstractActionController
         // test model
 //        $data = $this->models->test->getTest('dymyw');
 //        return $data;
+
+        // func saveLog
+        $this->func->saveLog(LOG_DIR . 'temp.log', var_export([
+            'gender' => 'men',
+            'page' => 2,
+        ], true));
 
         // core url helper
         echo $this->helpers->url('eyeglasses/gender', [

@@ -4,7 +4,7 @@
  *
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-11
- * @version 2016-11-15
+ * @version 2016-11-16
  */
 
 use Core\Loader\AutoLoader;
@@ -31,6 +31,7 @@ define('WWW_DIR',       ROOT_DIR . 'Www' . DS);
 define('CSS_DIR',       WWW_DIR . 'themes' . DS . 'default' . DS);
 define('JS_DIR',        WWW_DIR . 'js' . DS);
 define('IMG_DIR',       WWW_DIR . 'images' . DS);
+define('LOG_DIR',       WWW_DIR  . 'log' . DS);
 
 /**
  * The base path of URLs
@@ -42,6 +43,14 @@ define('IMG_DIR',       WWW_DIR . 'images' . DS);
  */
 if (file_exists(CONFIG_DIR . 'Config.private.php')) {
     include CONFIG_DIR . 'Config.private.php';
+}
+
+/**
+ * Run environment
+ */
+!defined('ENV_PRODUCTION') && define('ENV_PRODUCTION', false);
+if (!ENV_PRODUCTION) {
+    error_reporting(E_ALL);
 }
 
 /**

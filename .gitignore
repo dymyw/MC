@@ -2,3 +2,4 @@ nbproject/*
 Log/*
 
 *.private.php
+Www/log/*

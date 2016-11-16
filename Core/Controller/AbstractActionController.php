@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-05
- * @version 2016-11-09
+ * @version 2016-11-16
  */
 
 namespace Core\Controller;
@@ -22,6 +22,7 @@ use Core\View\Model\ViewModelInterface;
  * @property \Core\Controller\Plugin\Layout $layout The layout plugin
  * @property \Core\View\View $view The view plugin
  * @property \Core\Controller\Plugin\Param $param Get the parameter value plugin
+ * @property \Core\Controller\Plugin\Func $func The misc functions
  *
  * @method \Core\Controller\Plugin\Layout layout($model) The layout plugin
  * @method \Core\View\View view() The view plugin
