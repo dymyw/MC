@@ -5,7 +5,7 @@
  * @package Core_View_Model
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-15
- * @version 2016-10-21
+ * @version 2016-11-16
  */
 
 namespace Core\View\Model;
@@ -92,6 +92,7 @@ class JsonModel extends ViewModel
      *
      * @param string $redirect
      * @param int $delay
+     * @return JsonModel
      */
     public function setRedirect($redirect, $delay = 0)
     {

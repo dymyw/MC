@@ -5,7 +5,7 @@
  * @package Core_View_Model
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-15
- * @version 2016-10-21
+ * @version 2016-11-16
  */
 
 namespace Core\View\Model;
@@ -120,7 +120,7 @@ class ViewModel implements ViewModelInterface
      */
     public function setVariables($variables, $overwrite = false)
     {
-        if (!is_array($variables)) {
+        if (!is_array($variables) && !($variables instanceof \Traversable)) {
             throw new \InvalidArgumentException(sprintf(
                 '%s: expects an array, or Traversable argument; received "%s"',
                 __METHOD__,
@@ -128,12 +128,12 @@ class ViewModel implements ViewModelInterface
             ));
         }
 
-        if ($overwrite) {
-            $this->variables = $variables;
-        } else {
-            foreach ($variables as $key => $value) {
-                $this->setVariable($key, $value);
-            }
+        if ($overwrite && count($this->getVariables())) {
+            $this->getVariables()->clear();
+        }
+
+        foreach ($variables as $key => $value) {
+            $this->setVariable($key, $value);
         }
 
         return $this;
@@ -142,7 +142,7 @@ class ViewModel implements ViewModelInterface
     /**
      * Get view variables
      *
-     * @return array|\ArrayObject
+     * @return ViewVariables
      */
     public function getVariables()
     {
@@ -208,7 +208,7 @@ class ViewModel implements ViewModelInterface
      */
     public function setTemplate($template)
     {
-        $this->template = $template;
+        $this->template = (string) $template;
         return $this;
     }
 
@@ -281,7 +281,7 @@ class ViewModel implements ViewModelInterface
     /**
      * Get all children
      *
-     * @return array
+     * @return ViewModel[]
      */
     public function getChildren()
     {

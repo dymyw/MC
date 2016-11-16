@@ -5,14 +5,14 @@
  * @package Core_View_Helper
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-19
- * @version 2016-11-03
+ * @version 2016-11-16
  */
 
 namespace Core\View\Helper;
 
 use Core\View\Renderer\RendererInterface;
 
-class AbstractHelper implements HelperInterface
+abstract class AbstractHelper implements HelperInterface
 {
     /**
      * @var RendererInterface

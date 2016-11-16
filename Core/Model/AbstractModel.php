@@ -5,7 +5,7 @@
  * @package Core_Model
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-19
- * @version 2016-11-09
+ * @version 2016-11-16
  */
 
 namespace Core\Model;
@@ -17,7 +17,7 @@ use Core\ServiceLocator\ServiceLocator;
  * @property \Core\Db\Pdo $db The DB instance
  * @property \Core\Model\ModelManager $models the data model manager
  */
-class AbstractModel implements ServiceLocatorAwareInterface
+abstract class AbstractModel implements ServiceLocatorAwareInterface
 {
     /**
      * @var ServiceLocator

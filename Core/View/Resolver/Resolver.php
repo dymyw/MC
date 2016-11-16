@@ -5,7 +5,7 @@
  * @package Core_View_Resolver
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-17
- * @version 2016-11-01
+ * @version 2016-11-16
  */
 
 namespace Core\View\Resolver;
@@ -115,7 +115,7 @@ class Resolver implements ResolverInterface
      */
     public function setSuffix($suffix)
     {
-        $this->suffix = $suffix;
+        $this->suffix = ltrim($suffix, '.');
         return $this;
     }
 
@@ -133,7 +133,7 @@ class Resolver implements ResolverInterface
      * Resolve a template/pattern name to a resource the renderer can consume
      *
      * @param string $name
-     * @return mixed
+     * @return string
      * @throws \RuntimeException
      */
     public function resolve($name)
