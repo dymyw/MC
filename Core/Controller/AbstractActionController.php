@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-05
- * @version 2016-11-16
+ * @version 2016-11-17
  */
 
 namespace Core\Controller;
@@ -27,6 +27,7 @@ use Core\View\Model\ViewModelInterface;
  * @method \Core\Controller\Plugin\Layout layout($model) The layout plugin
  * @method \Core\View\View view() The view plugin
  * @method \Core\Controller\Plugin\Param param(string $name, $default) Get the parameter value
+ * @method \Core\Controller\Plugin\ViewModel viewModel($method) Get the view model from other method of controller
  */
 abstract class AbstractActionController implements ServiceLocatorAwareInterface
 {

@@ -5,7 +5,7 @@
  * @package App_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-10-10
- * @version 2016-11-16
+ * @version 2016-11-17
  */
 
 namespace App\Controller;
@@ -41,28 +41,31 @@ class DefaultController extends AbstractActionController
 //        return $data;
 
         // func saveLog
-        $this->func->saveLog(LOG_DIR . 'temp.log', var_export([
-            'gender' => 'men',
-            'page' => 2,
-        ], true));
+//        $this->func->saveLog(LOG_DIR . 'temp.log', var_export([
+//            'gender' => 'men',
+//            'page' => 2,
+//        ], true));
 
         // core url helper
-        echo $this->helpers->url('eyeglasses/gender', [
-            'gender' => 'men',
-            'page' => 2,
-        ], false, true);
+//        echo $this->helpers->url('eyeglasses/gender', [
+//            'gender' => 'men',
+//            'page' => 2,
+//        ], false, true);
 
 
         // min helper
-        return [
-            'data' => $this->helpers->min(12, 36),
-        ];
+//        return [
+//            'data' => $this->helpers->min(12, 36),
+//        ];
 
         // json model
 //        return $jsonModel = JsonModel::init([
 //            'name' => 'dymyw',
 //            'lang' => 'php',
 //        ])->setJsonpCallback('console.log');
+
+        // core plugin viewModel
+        var_dump($this->viewModel(['EyeglassesController', 'filterAction']));
     }
 
     public function notFoundAction()
