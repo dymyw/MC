@@ -5,7 +5,7 @@
  * @package App_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-10-09
- * @version 2016-11-17
+ * @version 2016-11-23
  */
 
 namespace App\Controller;
@@ -27,6 +27,13 @@ class EyeglassesController extends AbstractActionController
     {
 //        var_dump('eyeglasses - gender', $_GET);
 //        var_dump($this->param('gender'));
+
+        // core helper selfurl
+//        echo $this->helpers->selfUrl('type=test');
+        echo $this->helpers->selfUrl(['id' => 2, 'type' => 'test', 'gender' => 'men']);
+        var_dump($this->param('gender'));
+        var_dump($this->locator->params);
+        var_dump($_GET);
     }
 
     public function listAction()

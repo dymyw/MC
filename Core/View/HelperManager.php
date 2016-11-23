@@ -17,6 +17,7 @@ use Core\Loader\AutoLoader;
  * @property \Core\View\Helper\Url $url
  *
  * @method \Core\View\Helper\Url url($path = 'default/index', $params = [], $https = false, $forceHost = false)
+ * @method \Core\View\Helper\SelfUrl selfUrl($query = null, $escape = true) Get current url
  * @method \Core\View\Helper\Controller controller() Controller name
  * @method \Core\View\Helper\Action action() Action name
  * @method \Core\View\Helper\PageId pageId() Controller + Action
