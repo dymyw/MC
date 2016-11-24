@@ -5,7 +5,7 @@
  * @package App_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-10-17
+ * @version 2016-11-24
  */
 
 namespace App\ServiceLocator;
@@ -71,5 +71,26 @@ final class Invokable
 
         // return
         return $params;
+    }
+
+    /**
+     * Get the redis instance
+     *
+     * @return \Redis
+     */
+    public function getRedisInstance()
+    {
+        if (REDIS_ENABLED) {
+            try {
+                // get instance
+                $redis = new \Redis();
+                $redis->pconnect(REDIS_HOST, REDIS_PORT);
+                REDIS_AUTH && $redis->auth(REDIS_AUTH);
+                $redis->setOption(\Redis::OPT_SERIALIZER, \Redis::SERIALIZER_PHP);
+                return $redis;
+            } catch (\RedisException $e) {}
+        }
+
+        return null;
     }
 }

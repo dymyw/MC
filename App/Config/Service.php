@@ -13,19 +13,20 @@ return [
         // callback function
         'db'        => ['App\ServiceLocator\Invokable', 'getDbInstance'],
         'params'    => ['App\ServiceLocator\Invokable', 'getParams'],
+        'redis'     => ['App\ServiceLocator\Invokable', 'getRedisInstance'],
 
         // invokable class
-        'frontController'   => 'Core\Controller\FrontController'
+        'frontController'   => 'Core\Controller\FrontController',
     ],
 
     'aliases' => [
-        'info' => 'profile'
+        'info' => 'profile',
     ],
 
     'parameters' => [
     ],
 
     'readonly' => [
-        'profile' => true
+        'profile' => true,
     ],
 ];

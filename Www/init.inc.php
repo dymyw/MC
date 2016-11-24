@@ -4,7 +4,7 @@
  *
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-11
- * @version 2016-11-16
+ * @version 2016-11-24
  */
 
 use Core\Loader\AutoLoader;
@@ -71,6 +71,14 @@ AutoLoader::register();
 !defined('DB_USERNAME') && define('DB_USERNAME', 'root');
 !defined('DB_PASSWORD') && define('DB_PASSWORD', '');
 !defined('DB_DATABASE') && define('DB_DATABASE', 'test');
+
+/**
+ * Redis
+ */
+!defined('REDIS_ENABLED') && define('REDIS_ENABLED', true);
+!defined('REDIS_HOST') && define('REDIS_HOST', 'localhost');
+!defined('REDIS_PORT') && define('REDIS_PORT', 6379);
+!defined('REDIS_AUTH') && define('REDIS_AUTH', 'dymyw');
 
 /* @var $locator ServiceLocator */
 $GLOBALS['locator'] = new ServiceLocator(include CONFIG_DIR . 'Service.php');

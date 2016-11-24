@@ -5,7 +5,7 @@
  * @package App_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-10-10
- * @version 2016-11-17
+ * @version 2016-11-24
  */
 
 namespace App\Controller;
@@ -65,7 +65,20 @@ class DefaultController extends AbstractActionController
 //        ])->setJsonpCallback('console.log');
 
         // core plugin viewModel
-        var_dump($this->viewModel(['EyeglassesController', 'filterAction']));
+//        var_dump($this->viewModel(['EyeglassesController', 'filterAction']));
+
+        /* @var $redis \Core\Cache\Redis */
+        try {
+            $redis = $this->locator->get('Core\Cache\Redis');
+//            var_dump($redis->get('tttt', function() {
+//                return 'dymyw';
+//            }, 10));
+            var_dump($redis->get('tttt'));
+//            $redis->close();
+        } catch (\RedisException $e) {
+            echo $e->getMessage();
+        }
+        exit;
     }
 
     public function notFoundAction()
