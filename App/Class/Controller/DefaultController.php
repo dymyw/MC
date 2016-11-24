@@ -10,7 +10,9 @@
 
 namespace App\Controller;
 
-//use Core\View\Model\JsonModel;
+use Core\Utils\Http;
+use Core\View\Model\ViewModel;
+use Core\View\Model\JsonModel;
 
 class DefaultController extends AbstractActionController
 {
@@ -68,17 +70,47 @@ class DefaultController extends AbstractActionController
 //        var_dump($this->viewModel(['EyeglassesController', 'filterAction']));
 
         /* @var $redis \Core\Cache\Redis */
-        try {
-            $redis = $this->locator->get('Core\Cache\Redis');
-//            var_dump($redis->get('tttt', function() {
-//                return 'dymyw';
-//            }, 10));
-            var_dump($redis->get('tttt'));
-//            $redis->close();
-        } catch (\RedisException $e) {
-            echo $e->getMessage();
+//        try {
+//            $redis = $this->locator->get('Core\Cache\Redis');
+////            var_dump($redis->get('tttt', function() {
+////                return 'dymyw';
+////            }, 10));
+//            var_dump($redis->get('tttt'));
+////            $redis->close();
+//        } catch (\RedisException $e) {
+//            echo $e->getMessage();
+//        }
+//        exit;
+    }
+
+    public function ajaxResponseAction()
+    {
+        $id = $this->param('id');
+        $name = $this->param('name');
+
+        // check and set error
+        $error = '';
+        if (!$name) {
+            $error = "Name should not empty!";
         }
-        exit;
+
+        $data = [
+            'id' => $id,
+            'name' => $name,
+        ];
+
+        if (Http::isAjax()) {
+            $viewModel = new ViewModel($data, 'default/ajax-response');
+            if ($error) {
+                return JsonModel::init('error', $error);
+            } else {
+                return JsonModel::init('succ', '', $this->view->render($viewModel));
+            }
+        } else {
+            var_dump($data);
+
+            return false;
+        }
     }
 
     public function notFoundAction()
