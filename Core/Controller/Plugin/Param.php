@@ -5,7 +5,7 @@
  * @package Core_Controller_Plugin
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-19
- * @version 2016-11-09
+ * @version 2016-11-24
  */
 
 namespace Core\Controller\Plugin;
@@ -16,7 +16,7 @@ use Core\ServiceLocator\ServiceLocator;
 class Param implements ServiceLocatorAwareInterface
 {
     /**
-     * @var ServiceLocator
+     * @var ServiceLocator|\App\Hint\ServiceLocator
      */
     protected $locator = null;
 

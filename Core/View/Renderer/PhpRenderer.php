@@ -5,7 +5,7 @@
  * @package Core_View_Renderer
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-17
- * @version 2016-11-16
+ * @version 2016-11-24
  */
 
 namespace Core\View\Renderer;
@@ -36,7 +36,7 @@ class PhpRenderer implements RendererInterface, ServiceLocatorAwareInterface
     private $__varsCached = [];
 
     /**
-     * @var ServiceLocator|\Hint\ServiceLocator
+     * @var ServiceLocator|\App\Hint\ServiceLocator
      */
     private $locator = null;
 

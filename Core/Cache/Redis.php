@@ -16,7 +16,7 @@ use Core\ServiceLocator\ServiceLocator;
 class Redis extends \Redis implements ServiceLocatorAwareInterface
 {
     /**
-     * @var ServiceLocator|\Hints\ServiceLocator
+     * @var ServiceLocator|\App\Hint\ServiceLocator
      */
     protected $locator = null;
 

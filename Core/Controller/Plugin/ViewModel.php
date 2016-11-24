@@ -5,7 +5,7 @@
  * @package Core_Controller_Plugin
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-03-03
- * @version 2016-11-17
+ * @version 2016-11-24
  */
 
 namespace Core\Controller\Plugin;
@@ -22,7 +22,7 @@ use Core\View\Model\ViewModel as VModel;
 class ViewModel extends AbstractPlugin implements ServiceLocatorAwareInterface
 {
     /**
-     * @var ServiceLocator
+     * @var ServiceLocator|\App\Hint\ServiceLocator
      */
     protected $locator = null;
 

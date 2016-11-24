@@ -5,7 +5,7 @@
  * @package Core_Model
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-19
- * @version 2016-11-16
+ * @version 2016-11-24
  */
 
 namespace Core\Model;
@@ -20,7 +20,7 @@ use Core\ServiceLocator\ServiceLocator;
 abstract class AbstractModel implements ServiceLocatorAwareInterface
 {
     /**
-     * @var ServiceLocator
+     * @var ServiceLocator|\App\Hint\ServiceLocator
      */
     protected $locator = null;
 

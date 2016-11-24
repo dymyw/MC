@@ -5,7 +5,7 @@
  * @package Core_ServiceLocator_PluginManager
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-12
- * @version 2016-11-15
+ * @version 2016-11-24
  */
 
 namespace Core\ServiceLocator\PluginManager;
@@ -18,7 +18,7 @@ use Core\View\HelperManager;
 abstract class AbstractPluginManager implements ServiceLocatorAwareInterface
 {
     /**
-     * @var ServiceLocator|\Hint\ServiceLocator
+     * @var ServiceLocator|\App\Hint\ServiceLocator
      */
     protected $locator = null;
 

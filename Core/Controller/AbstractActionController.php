@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-05
- * @version 2016-11-17
+ * @version 2016-11-24
  */
 
 namespace Core\Controller;
@@ -39,7 +39,7 @@ abstract class AbstractActionController implements ServiceLocatorAwareInterface
     protected $layout = null;
 
     /**
-     * @var ServiceLocator
+     * @var ServiceLocator|\App\Hint\ServiceLocator
      */
     protected $locator = null;
 

@@ -5,7 +5,7 @@
  * @package Core_Controller_Plugin
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-17
- * @version 2016-11-02
+ * @version 2016-11-24
  */
 
 namespace Core\Controller\Plugin;
@@ -17,7 +17,7 @@ use Core\ServiceLocator\PluginManager\FactoryInterface;
 class View extends AbstractPlugin implements ServiceLocatorAwareInterface, FactoryInterface
 {
     /**
-     * @var ServiceLocator
+     * @var ServiceLocator|\App\Hint\ServiceLocator
      */
     protected $locator = null;
 

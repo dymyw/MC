@@ -5,7 +5,7 @@
  * @package Core_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-14
- * @version 2016-11-15
+ * @version 2016-11-24
  */
 
 namespace Core\Controller;
@@ -64,7 +64,7 @@ class FrontController implements ServiceLocatorAwareInterface
     protected $controller = null;
 
     /**
-     * @var ServiceLocator
+     * @var ServiceLocator|\App\Hint\ServiceLocator
      */
     protected $locator = null;
 
