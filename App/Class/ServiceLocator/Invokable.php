@@ -5,7 +5,7 @@
  * @package App_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-11-24
+ * @version 2016-11-25
  */
 
 namespace App\ServiceLocator;
@@ -14,6 +14,7 @@ use Core\Db\Pdo;
 use Core\ServiceLocator\ServiceLocator;
 use Core\Router\RuleParser;
 use Core\Router\Router;
+use Core\Console\ArgumentParser;
 
 /**
  * Put all the invokable functions together for locator
@@ -63,8 +64,14 @@ final class Invokable
         $router->setBasePath(BASE_PATH);
 //        $router->setRouteMode(Router::ROUTE_MODE_PATHINFO);
 
+        // get cli parameters
+        if ('cli' == PHP_SAPI) {
+            $params = ArgumentParser::parse($_SERVER['argv']);
+        }
         // get parameters
-        $params = $router->parseUrl();
+        else {
+            $params = $router->parseUrl();
+        }
 
         // add Router service
         $locator->setService('router', $router);

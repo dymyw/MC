@@ -5,7 +5,7 @@
  * @package App_Controller
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-10-09
- * @version 2016-11-23
+ * @version 2016-11-25
  */
 
 namespace App\Controller;
@@ -51,6 +51,13 @@ class EyeglassesController extends AbstractActionController
         return [
             'method' => 'filter - ' . $str,
         ];
+    }
+
+    public function cliAction()
+    {
+        var_dump([
+            'name' => $this->param('name'),
+        ]);
     }
 
     public function notFoundAction()
