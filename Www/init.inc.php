@@ -4,7 +4,7 @@
  *
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-11
- * @version 2016-11-24
+ * @version 2016-11-28
  */
 
 use Core\Loader\AutoLoader;
@@ -79,6 +79,13 @@ AutoLoader::register();
 !defined('REDIS_HOST') && define('REDIS_HOST', 'localhost');
 !defined('REDIS_PORT') && define('REDIS_PORT', 6379);
 !defined('REDIS_AUTH') && define('REDIS_AUTH', 'dymyw');
+
+/**
+ * Configuration
+ */
+const PLUGIN_MANAGER    = 'Core\Controller\PluginManager';
+const MODEL_MANAGER     = 'Core\Model\ModelManager';
+const HELPER_MANAGER    = 'Core\View\HelperManager';
 
 /* @var $locator ServiceLocator */
 $GLOBALS['locator'] = new ServiceLocator(include CONFIG_DIR . 'Service.php');
