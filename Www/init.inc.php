@@ -12,11 +12,6 @@ use Core\ServiceLocator\ServiceLocator;
 use Core\Utils\Http;
 
 /**
- * MC Version
- */
-define('MC_VERSION', '2.0');
-
-/**
  * Filesystem constants
  */
 define('DS', DIRECTORY_SEPARATOR);

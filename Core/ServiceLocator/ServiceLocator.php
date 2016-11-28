@@ -5,7 +5,7 @@
  * @package Core_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-11-15
+ * @version 2016-11-28
  */
 
 namespace Core\ServiceLocator;
@@ -13,6 +13,8 @@ namespace Core\ServiceLocator;
 use Core\Utils\Reflection;
 
 /**
+ * @property string $MC_VERSION
+ *
  * @property \Core\Db\Pdo $db The DB instance
  * @property \Core\Router\Router $router The Router instance
  * @property \Core\Controller\FrontController $frontController The front controller
@@ -26,7 +28,9 @@ class ServiceLocator implements ServiceLocatorInterface
     /**
      * @var array
      */
-    protected $services = [];
+    protected $services = [
+        'MC_VERSION' => '2.0',
+    ];
 
     /**
      * @var array
