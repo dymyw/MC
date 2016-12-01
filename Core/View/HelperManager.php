@@ -5,7 +5,7 @@
  * @package Core_View
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-19
- * @version 2016-11-14
+ * @version 2016-12-01
  */
 
 namespace Core\View;
@@ -14,8 +14,10 @@ use Core\ServiceLocator\PluginManager\AbstractPluginManager;
 use Core\Loader\AutoLoader;
 
 /**
+ * @property \Core\Controller\Plugin\Param $param Get the parameter value plugin
  * @property \Core\View\Helper\Url $url
  *
+ * @method \Core\Controller\Plugin\Param param(string $name, $default) Get the parameter value
  * @method \Core\View\Helper\Url url($path = 'default/index', $params = [], $https = false, $forceHost = false)
  * @method \Core\View\Helper\SelfUrl selfUrl($query = null, $escape = true) Get current url
  * @method \Core\View\Helper\Controller controller() Controller name
