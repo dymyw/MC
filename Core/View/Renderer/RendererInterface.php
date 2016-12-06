@@ -5,7 +5,7 @@
  * @package Core_View_Renderer
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-17
- * @version 2016-11-01
+ * @version 2016-12-06
  */
 
 namespace Core\View\Renderer;
@@ -38,9 +38,9 @@ interface RendererInterface
      * Processes a view script and returns the output
      *
      * @param string|ViewModelInterface $nameOrModel The script/resource process, or a view model
-     * @param null|array|\ArrayAccess $values Values to use during rendering
+     * @param array|\ArrayAccess $values Values to use during rendering
      * @return string
      * @throws \RuntimeException
      */
-    public function render($nameOrModel, $values = null);
+    public function render($nameOrModel, $values = []);
 }
