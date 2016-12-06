@@ -5,7 +5,7 @@
  * @package Core_ServiceLocator
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-11-28
+ * @version 2016-12-06
  */
 
 namespace Core\ServiceLocator;
@@ -29,7 +29,7 @@ class ServiceLocator implements ServiceLocatorInterface
      * @var array
      */
     protected $services = [
-        'MC_VERSION' => '2.0',
+        'MC_VERSION' => '2.0.0',
     ];
 
     /**

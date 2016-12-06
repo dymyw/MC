@@ -4,10 +4,12 @@
  *
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-11
- * @version 2016-11-02
+ * @version 2016-12-06
  */
 
 include_once 'init.inc.php';
+
+session_start();
 
 /* @var $locator \Core\ServiceLocator\ServiceLocator */
 $params = $locator->get('params');

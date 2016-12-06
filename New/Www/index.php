@@ -2,6 +2,8 @@
 
 include_once 'init.inc.php';
 
+session_start();
+
 /* @var $locator \Core\ServiceLocator\ServiceLocator */
 $params = $locator->get('params');
 $controller = &$params['_controller'];
