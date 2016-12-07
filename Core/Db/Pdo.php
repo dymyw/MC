@@ -5,7 +5,7 @@
  * @package Core_Db
  * @author Dymyw <dymayongwei@163.com>
  * @since 2014-09-13
- * @version 2016-11-15
+ * @version 2016-12-07
  */
 
 namespace Core\Db;
@@ -16,6 +16,11 @@ class Pdo extends \PDO
      * @var int
      */
     protected $defaultFetchMode = \PDO::FETCH_ASSOC;
+
+    /**
+     * @var string|array
+     */
+    private $lastSql = '';
 
     /**
      * Constructor
@@ -59,6 +64,7 @@ class Pdo extends \PDO
         if (1 === func_num_args()) {
             // return the number of found (matched) rows, not the number of changed rows,
             // or FALSE on failure
+            $this->lastSql = $sql;
             return parent::exec($sql);
         }
         // also pass some parameters
@@ -89,6 +95,7 @@ class Pdo extends \PDO
         // only pass the simple sql, don't have other parameters
         if (1 === func_num_args()) {
             // \PDO::query() returns a \PDOStatement object, or FALSE on failure
+            $this->lastSql = $sql;
             $stmt = $this->query($sql);
             if (false === $stmt) {
                 return false;
@@ -124,6 +131,7 @@ class Pdo extends \PDO
         // only pass the simple sql, don't have other parameters
         if (1 === func_num_args()) {
             // \PDO::query() returns a \PDOStatement object, or FALSE on failure
+            $this->lastSql = $sql;
             $stmt = $this->query($sql);
             if (false === $stmt) {
                 return false;
@@ -159,6 +167,7 @@ class Pdo extends \PDO
         // only pass the simple sql, don't have other parameters
         if (1 === func_num_args()) {
             // \PDO::query() returns a \PDOStatement object, or FALSE on failure
+            $this->lastSql = $sql;
             $stmt = $this->query($sql);
             if (false === $stmt) {
                 return false;
@@ -192,6 +201,7 @@ class Pdo extends \PDO
         // only pass the simple sql, don't have other parameters
         if (1 === func_num_args()) {
             // \PDO::query() returns a \PDOStatement object, or FALSE on failure
+            $this->lastSql = $sql;
             $stmt = $this->query($sql);
             if (false === $stmt) {
                 return false;
@@ -225,6 +235,7 @@ class Pdo extends \PDO
         // only pass the simple sql, don't have other parameters
         if (1 === func_num_args()) {
             // \PDO::query() returns a \PDOStatement object, or FALSE on failure
+            $this->lastSql = $sql;
             $stmt = $this->query($sql);
             if (false === $stmt) {
                 return false;
@@ -240,6 +251,16 @@ class Pdo extends \PDO
 
         // fetch & return
         return $stmt->fetchAll(\PDO::FETCH_COLUMN);
+    }
+
+    /**
+     * Get the last executed sql
+     *
+     * @return string|array
+     */
+    public function getLastSql()
+    {
+        return $this->lastSql;
     }
 
     /**
@@ -259,6 +280,7 @@ class Pdo extends \PDO
 
         // prepare & execute
         $stmt = $this->prepare($sql);
+        $this->lastSql = ['sql' => $sql, 'params' => $params];
         if (!$stmt->execute((array) $params)) {
             return false;
         }
