@@ -5,7 +5,7 @@
  * @package Core_View_Helper
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-28
- * @version 2016-11-24
+ * @version 2016-12-09
  */
 
 namespace Core\View\Helper;
@@ -33,7 +33,7 @@ class PageId implements ServiceLocatorAwareInterface
     public function __invoke()
     {
         if (null === $this->pageId) {
-            return $this->pageId = $this->locator->controllerName . '-' . $this->locator->actionName;
+            return $this->pageId = $this->locator->controllerName . '_' . $this->locator->actionName;
         }
 
         return $this->pageId;
