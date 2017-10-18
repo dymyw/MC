@@ -2,7 +2,7 @@
 
 namespace App\View\Helper;
 
-use Core\Utils\String;
+use Core\Utils\Str;
 
 class Js
 {
@@ -43,7 +43,7 @@ class Js
     public function wrap($attrs = null)
     {
         if ($this->url) {
-            return sprintf("<script src=\"%s\"%s></script>\n", $this->url, String::concat($attrs));
+            return sprintf("<script src=\"%s\"%s></script>\n", $this->url, Str::concat($attrs));
         }
 
         return '';

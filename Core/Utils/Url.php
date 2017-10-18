@@ -5,12 +5,12 @@
  * @package Core_Utils
  * @author Dymyw <dymayongwei@163.com>
  * @since 2016-11-23
- * @version 2016-11-23
+ * @version 2017-10-18
  */
 
 namespace Core\Utils;
 
-use Core\Utils\String;
+use Core\Utils\Str;
 
 class Url
 {
@@ -57,6 +57,6 @@ class Url
         }
 
         // concat the query to path
-        return $path . String::concat(http_build_query($newQueryArray), '?');
+        return $path . Str::concat(http_build_query($newQueryArray), '?');
     }
 }

@@ -1,4 +1,5 @@
 nbproject/*
+.idea/*
 Log/*
 
 *.private.php

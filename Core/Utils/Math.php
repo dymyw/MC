@@ -5,12 +5,12 @@
  * @package Core_Utils
  * @author Dymyw <dymayongwei@163.com>
  * @since 2016-11-24
- * @version 2016-11-24
+ * @version 2017-10-18
  */
 
 namespace Core\Utils;
 
-use Core\Utils\String;
+use Core\Utils\Str;
 
 class Math
 {
@@ -40,9 +40,9 @@ class Math
             $unit = 'KB';
         }
         else {
-            return number_format($num) . String::concat('Bytes');
+            return number_format($num) . Str::concat('Bytes');
         }
 
-        return number_format($num, $precision) . String::concat($unit);
+        return number_format($num, $precision) . Str::concat($unit);
     }
 }

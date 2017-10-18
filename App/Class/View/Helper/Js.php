@@ -5,12 +5,12 @@
  * @package App_View_Helper
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-21
- * @version 2016-11-15
+ * @version 2017-10-18
  */
 
 namespace App\View\Helper;
 
-use Core\Utils\String;
+use Core\Utils\Str;
 
 class Js
 {
@@ -51,7 +51,7 @@ class Js
     public function wrap($attrs = null)
     {
         if ($this->url) {
-            return sprintf("<script src=\"%s\"%s></script>\n", $this->url, String::concat($attrs));
+            return sprintf("<script src=\"%s\"%s></script>\n", $this->url, Str::concat($attrs));
         }
 
         return '';

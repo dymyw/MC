@@ -1,24 +1,24 @@
 <?php
 /**
- * String utils
+ * Str utils
  *
  * @package Core_Utils
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-21
- * @version 2016-11-15
+ * @version 2017-10-18
  */
 
 namespace Core\Utils;
 
-class String
+class Str
 {
     /**
      * @param string $str
      * @param string $seperator
      * @return string
      * @example
-     *  $url .= String::concat($query, '?');
-     *  $sql .= String::concat('LIMIT 0, 1');
+     *  $url .= Str::concat($query, '?');
+     *  $sql .= Str::concat('LIMIT 0, 1');
      */
     public static function concat($str, $seperator = ' ')
     {

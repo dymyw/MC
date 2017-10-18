@@ -2,7 +2,7 @@
 
 namespace App\View\Helper;
 
-use Core\Utils\String;
+use Core\Utils\Str;
 
 class Css
 {
@@ -44,7 +44,7 @@ class Css
     {
         if ($this->url) {
             $rel = substr($this->url, -9) == '.less.css' ? 'stylesheet/less' : 'stylesheet';
-            return sprintf("<link rel=\"%s\" href=\"%s\"%s />\n", $rel, $this->url, String::concat($attrs));
+            return sprintf("<link rel=\"%s\" href=\"%s\"%s />\n", $rel, $this->url, Str::concat($attrs));
         }
 
         return '';

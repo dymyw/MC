@@ -5,12 +5,12 @@
  * @package App_View_Helper
  * @author Dymyw <dymayongwei@163.com>
  * @since 2015-01-21
- * @version 2016-11-15
+ * @version 2017-10-18
  */
 
 namespace App\View\Helper;
 
-use Core\Utils\String;
+use Core\Utils\Str;
 
 class Css
 {
@@ -52,7 +52,7 @@ class Css
     {
         if ($this->url) {
             $rel = substr($this->url, -9) == '.less.css' ? 'stylesheet/less' : 'stylesheet';
-            return sprintf("<link rel=\"%s\" href=\"%s\"%s />\n", $rel, $this->url, String::concat($attrs));
+            return sprintf("<link rel=\"%s\" href=\"%s\"%s />\n", $rel, $this->url, Str::concat($attrs));
         }
 
         return '';
